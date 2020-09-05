@@ -22,7 +22,10 @@ const Login = () => {
 
         <div className='dropdown-divider' style={{ margin: '30px' }}></div>
 
-        <form>
+        <form
+          className='px-5 py-3'
+          style={{ position: 'relative', left: '-40px' }}
+        >
           <div className='form-group'>
             <input type='email' className='form-control' placeholder='email' />
           </div>
