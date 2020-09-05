@@ -16,7 +16,13 @@
 }
 
 .header__left > img {
-  height: 30px;
+  height: 35px;
+}
+
+.header__left > span {
+  display: flex;
+  flex: 1;
+  justify-content: center;
 }
 
 .header__middle {
@@ -28,7 +34,7 @@
 .header__option {
   display: flex;
   align-items: center;
-  padding: 0 30px;
+  padding: 0 10px;
   cursor: pointer;
   color: #1a1a1b;
 }
@@ -37,7 +43,7 @@
   background-color: #cccccc;
   border-radius: 5px;
   align-items: center;
-  padding: 0 30px;
+  padding: 0 10px;
   border-bottom: none;
   color: #1a1a1b;
 }
