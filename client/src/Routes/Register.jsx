@@ -10,11 +10,23 @@ const Register = () => {
         <img src={background} alt='background' />
       </div>
       <div className='login-form'>
-        <h5>Login</h5>
+        <h5>Sign Up</h5>
         <p style={{ marginBottom: '50px' }}>
           By continuing, you agree to our <Link to='/'>User Agreement</Link> and{' '}
           <Link to='/'>Privacy Policy</Link> .{' '}
         </p>
+
+        <div className='form-check'>
+          <input
+            className='form-check-input'
+            type='checkbox'
+            value=''
+            id='defaultCheck1'
+          />
+          <label className='form-check-label' for='defaultCheck1'>
+            I agree to get emails about cool stuff on Reddit
+          </label>
+        </div>
 
         {/* SOCIAL BTNS */}
         <button className='btn-social'>CONTINUE WITH GOOGLE</button>
@@ -26,25 +38,15 @@ const Register = () => {
           <div className='form-group'>
             <input type='email' className='form-control' placeholder='email' />
           </div>
-          <div className='form-group'>
-            <input
-              type='password'
-              class='form-control'
-              placeholder='password'
-            />
-          </div>
+
           <button type='submit' class='btn btn-primary btn-sm btn-block'>
-            LOG IN
+            CONTINUE
           </button>
-          <small className='form-text text-muted'>
-            Forgot your <Link to='/login'>username</Link> or{' '}
-            <Link to='/login'>password</Link> ?{' '}
-          </small>
 
           <small className='mt-5'>
-            New to Reddit?{' '}
-            <Link to='/register' style={{ fontWeight: 'bold' }}>
-              SIGN UP
+            Already a redditor?{' '}
+            <Link to='/login' style={{ fontWeight: 'bold' }}>
+              LOG IN
             </Link>{' '}
           </small>
         </form>

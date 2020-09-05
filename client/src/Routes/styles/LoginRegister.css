@@ -2,12 +2,13 @@
   min-height: 100vh;
   display: block;
   position: relative;
+  max-width: 10vw;
 }
 
 .login-form {
   position: absolute;
-  left: 18%;
-  top: 35%;
+  left: 12%;
+  top: 30%;
 }
 
 .login-form p {
@@ -36,4 +37,8 @@
 .btn-social:hover {
   background-color: #0079d3;
   color: #ffffff;
+}
+
+.form-check-label {
+  font-size: smaller;
 }
