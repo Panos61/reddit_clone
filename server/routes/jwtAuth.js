@@ -1,0 +1,68 @@
+const router = require('express').Router();
+const pool = require('../db');
+const bcrypt = require('bcrypt');
+const validInfo = require('../middleware/validInfo');
+
+// Register
+router.post('/register', validInfo, async (req, res) => {
+  try {
+    const { email, username, password } = req.body;
+
+    // Check if user already exists by checking for an existing email.
+    // If exists, return 401 status code.
+    const user = await pool.query('SELECT * FROM users WHERE user_email = $1', [
+      email,
+    ]);
+
+    if (user.rows.length !== 0) {
+      return res.status(401).send('User already exists!');
+    }
+
+    // Bcrypt the password.
+    const saltRound = 10;
+    const salt = await bcrypt.genSalt(saltRound);
+
+    const bcryptPassword = await bcrypt.hash(password, salt);
+
+    // Insert user entity into the DB.
+    const newUser = await pool.query(
+      'INSERT INTO users (user_email, user_name, user_password VALUES ($1, $2, $3) RETURNING *',
+      [email, username, bcryptPassword]
+    );
+  } catch (error) {
+    res.status(500).send('Server Error!');
+    console.error(error);
+  }
+});
+
+router.post('/login', validInfo, async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    // Check if user doesn't exist.
+    const user = await pool.query('SELECT * FROM users WHERE user_email = $1', [
+      email,
+    ]);
+    // If not, throw err
+    if (user.rows.length === 0) {
+      return res.status(401).json('Email or Password is incorrect!');
+    }
+
+    // Check if password matches with the hashed stored password.
+    const validPassword = await bcrypt.compare(
+      password,
+      user.rows[0].user_password
+    );
+    // If not, throw err
+    if (!validPassword) {
+      return res.status(401).json('Email or Password is incorrect!');
+    }
+
+    // Give user a JWT token
+  } catch (error) {
+    res.status(500).send('Server Error!');
+    console.error(error);
+  }
+});
+
+module.exports = router;
