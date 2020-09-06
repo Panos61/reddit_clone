@@ -2,6 +2,8 @@ const router = require('express').Router();
 const pool = require('../db');
 const bcrypt = require('bcrypt');
 const validInfo = require('../middleware/validInfo');
+const jwtGenerator = require('../utils/jwtGenerator');
+const authorization = require('../middleware/auth');
 
 // Register
 router.post('/register', validInfo, async (req, res) => {
@@ -29,6 +31,10 @@ router.post('/register', validInfo, async (req, res) => {
       'INSERT INTO users (user_email, user_name, user_password VALUES ($1, $2, $3) RETURNING *',
       [email, username, bcryptPassword]
     );
+
+    // Generate JWT token
+    const token = jwtGenerator(newUser.rows[0].user_id);
+    res.json({ token });
   } catch (error) {
     res.status(500).send('Server Error!');
     console.error(error);
@@ -58,10 +64,20 @@ router.post('/login', validInfo, async (req, res) => {
       return res.status(401).json('Email or Password is incorrect!');
     }
 
-    // Give user a JWT token
+    // Generate JWT token
+    const token = jwtGenerator(user.rows[0].user_id);
+    res.json({ token });
   } catch (error) {
     res.status(500).send('Server Error!');
     console.error(error);
+  }
+});
+
+router.get('/is-verify', authorization, async (req, res) => {
+  try {
+    res.json(true);
+  } catch (error) {
+    res.status(500).send('Server Error');
   }
 });
 

@@ -11,7 +11,8 @@ app.use(cors());
 // Dev Tool Middleware
 app.use(morgan('dev'));
 
-// routes
+// Auth Middleware
+app.use('/auth', require('./routes/jwtAuth'));
 
 // init server
 const port = process.env.PORT || 4005;
