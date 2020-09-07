@@ -76,14 +76,54 @@ const Header = (props) => {
             </NavbarText>
           </Nav>
           <UncontrolledDropdown>
-            <DropdownToggle nav caret>
+            <DropdownToggle
+              nav
+              caret
+              style={{ color: '#1c1c2a', fontSize: '15px' }}
+            >
               Meddle61
             </DropdownToggle>
             <DropdownMenu right>
-              <DropdownItem>Option 1</DropdownItem>
-              <DropdownItem>Option 2</DropdownItem>
-              <DropdownItem divider />
-              <DropdownItem>Reset</DropdownItem>
+              <DropdownItem>
+                <i
+                  class='fa fa-user'
+                  aria-hidden='true'
+                  style={{ marginRight: '8px' }}
+                ></i>
+                My Profile
+              </DropdownItem>
+              <DropdownItem>
+                <i
+                  class='fa fa-cog'
+                  aria-hidden='true'
+                  style={{ marginRight: '8px' }}
+                ></i>
+                Settings
+              </DropdownItem>
+              <DropdownItem
+                header
+                style={{ fontSize: '11px', fontWeight: 'bold' }}
+              >
+                VIEW OPTIONS
+              </DropdownItem>
+
+              <DropdownItem>
+                <i
+                  class='fa fa-moon-o'
+                  aria-hidden='true'
+                  style={{ marginRight: '8px' }}
+                ></i>
+                Night Mode
+              </DropdownItem>
+              <DropdownItem divider></DropdownItem>
+              <DropdownItem>
+                <i
+                  class='fa fa-sign-out'
+                  aria-hidden='true'
+                  style={{ marginRight: '8px' }}
+                ></i>
+                Log Out
+              </DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>
         </Collapse>

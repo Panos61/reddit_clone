@@ -35,5 +35,35 @@ img {
   color: #1a1a1b;
 }
 
+/* SUBMIT  */
+.submit-header {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  margin-bottom: 4px;
+}
+
+.submit-option button {
+  display: flex;
+  justify-content: space-around;
+  padding: 6px 15px;
+  cursor: pointer;
+  color: #8a94a5;
+  font-weight: 600;
+  background-color: #ffffff;
+  border: 1px solid #edeff1;
+}
+
+.submit-option button:hover {
+  background-color: #e9f5f8;
+  border-bottom: 2px solid #0079d3;
+  cursor: pointer;
+}
+
+.submit-container {
+  position: relative;
+  top: 5vh;
+}
+
 @media (max-width: 2024px) {
 }
