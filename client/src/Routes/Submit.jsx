@@ -12,6 +12,7 @@ import {
   Input,
 } from 'reactstrap';
 import Header from '../Components/Header';
+import help from '../img/help.png';
 
 const Submit = () => {
   return (
@@ -75,6 +76,11 @@ const Submit = () => {
           <Col sm='4'>
             <Card body>
               <CardTitle style={{ color: '#1c1c1c' }}>
+                <img
+                  src={help}
+                  alt=''
+                  style={{ height: '40px', backgroundColor: 'red' }}
+                />
                 Posting to Reddit
               </CardTitle>
               <CardText>
