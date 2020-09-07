@@ -4,8 +4,8 @@ import {
   LOGIN_SUCCESS,
   LOGIN_ERROR,
   LOGOUT_SUCCESS,
-  DELETE_USER_SUCCESS,
-  DELETE_USER_ERROR,
+  // DELETE_USER_SUCCESS,
+  // DELETE_USER_ERROR,
   SET_CURRENT_USER,
 } from './types';
 import isEmpty from 'lodash/isEmpty';
