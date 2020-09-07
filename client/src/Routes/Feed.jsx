@@ -1,11 +1,13 @@
 import React from 'react';
+
 import Header from '../Components/Header';
 
 const Feed = () => {
   return (
     <>
+      {/* <Header /> */}
       <Header />
-      <h4>Hello</h4>
+      <h4 style={{ textAlign: 'center' }}>Hello</h4>
     </>
   );
 };

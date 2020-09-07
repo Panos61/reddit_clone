@@ -42,3 +42,10 @@
 .form-check-label {
   font-size: smaller;
 }
+
+/* form width */
+@media (min-width: 440px) {
+  .login-form {
+    width: 34vh;
+  }
+}

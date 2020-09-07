@@ -1,44 +1,91 @@
-import React from 'react';
-import './styles/LoginRegister.css';
+import React, { useState } from 'react';
 import background from '../img/login_background.png';
+import { Col, Row, Button, Form, FormGroup, Input } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import './styles/LoginRegister.css';
 
 const Login = () => {
+  const [input, setInput] = useState({
+    email: '',
+    password: '',
+  });
+
+  const { email, password } = input;
+
+  const onChange = (e) => {
+    setInput({ ...input, [e.target.name]: e.target.value });
+  };
+
+  // const onSubmitForm = async (e) => {
+  //   e.preventDefault();
+
+  //   try {
+  //     const body = { email, password };
+
+  //     const response = await fetch('http://localhost:4000/auth/register', {
+  //       method: 'POST',
+  //       headers: { 'Content-Type': 'application/json' },
+
+  //       body: JSON.stringify(body),
+  //     });
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
+
   return (
     <>
       <div className='login-register-content'>
-        <img src={background} alt='background' />
+        <img src={background} alt='' />
       </div>
+
       <div className='login-form'>
-        <h5>Login</h5>
-        <p style={{ marginBottom: '50px' }}>
-          By continuing, you agree to our <Link to='/'>User Agreement</Link> and{' '}
-          <Link to='/'>Privacy Policy</Link> .{' '}
-        </p>
+        <Row form>
+          <Col md={12}>
+            <h5>Login</h5>
 
-        {/* SOCIAL BTNS */}
-        <button className='btn-social'>CONTINUE WITH GOOGLE</button>
-        <button className='btn-social'>CONTINUE WITH APPLE</button>
+            <p style={{ marginBottom: '50px' }}>
+              By continuing, you agree to our <Link to='/'>User Agreement</Link>{' '}
+              and <Link to='/'>Privacy Policy</Link> .{' '}
+            </p>
 
-        <div className='dropdown-divider' style={{ margin: '30px' }}></div>
+            {/* SOCIAL BTNS */}
+            <button className='btn-social'>CONTINUE WITH GOOGLE</button>
+            <button className='btn-social'>CONTINUE WITH APPLE</button>
 
-        <form
-          className='px-5 py-3'
-          style={{ position: 'relative', left: '-40px' }}
-        >
-          <div className='form-group'>
-            <input type='email' className='form-control' placeholder='email' />
-          </div>
-          <div className='form-group'>
-            <input
-              type='password'
-              class='form-control'
-              placeholder='password'
-            />
-          </div>
-          <button type='submit' class='btn btn-primary btn-sm btn-block'>
+            <div className='dropdown-divider' style={{ margin: '30px' }}></div>
+          </Col>
+        </Row>
+        <Form>
+          <Row form>
+            <Col md={12}>
+              <FormGroup>
+                <Input
+                  type='email'
+                  name='email'
+                  placeholder='email'
+                  value={email}
+                  onChange={(e) => onChange(e)}
+                />
+              </FormGroup>
+            </Col>
+          </Row>
+          <Row form>
+            <Col md={12}>
+              <FormGroup>
+                <Input
+                  type='password'
+                  name='password'
+                  placeholder='password'
+                  value={password}
+                  onChange={(e) => onChange(e)}
+                />
+              </FormGroup>
+            </Col>
+          </Row>
+          <Button color='primary' block>
             LOG IN
-          </button>
+          </Button>
           <small className='form-text text-muted'>
             Forgot your <Link to='/login'>username</Link> or{' '}
             <Link to='/login'>password</Link> ?{' '}
@@ -50,7 +97,7 @@ const Login = () => {
               SIGN UP
             </Link>{' '}
           </small>
-        </form>
+        </Form>
       </div>
     </>
   );
