@@ -13,6 +13,7 @@ import isEmpty from 'lodash/isEmpty';
 export const initState = {
   isAuthenticated: false,
   currentUser: {},
+  user: {},
   isLoading: false,
 };
 
@@ -30,6 +31,7 @@ const authReducer = (state = initState, action) => {
         ...state,
         isAuthenticated: true,
         currentUser: action.payload,
+        user: action.payload,
         isLoading: false,
       };
     case SET_CURRENT_USER:
