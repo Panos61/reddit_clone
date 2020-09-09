@@ -12,6 +12,8 @@ module.exports = async (req, res, next) => {
 
     req.user = payload.user;
 
+    console.log(req.user);
+
     next();
   } catch (error) {
     console.error(error);

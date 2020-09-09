@@ -5,6 +5,9 @@ const validInfo = require('../middleware/validInfo');
 const jwtGenerator = require('../utils/jwtGenerator');
 const authorization = require('../middleware/auth');
 
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
+
 // Register
 router.post('/register', validInfo, async (req, res) => {
   try {
@@ -66,7 +69,12 @@ router.post('/login', validInfo, async (req, res) => {
 
     // Generate JWT token
     const token = jwtGenerator(user.rows[0].user_id);
-    res.json({ token });
+
+    // Server Response
+    res.status(200).json({
+      user: user.rows[0],
+      token: token,
+    });
   } catch (error) {
     res.status(500).send('Server Error!');
     console.error(error);
@@ -76,6 +84,29 @@ router.post('/login', validInfo, async (req, res) => {
 router.get('/is-verify', authorization, async (req, res) => {
   try {
     res.json(true);
+  } catch (error) {
+    res.status(500).send('Server Error');
+    console.log(error);
+  }
+});
+
+router.get('/get-me', authorization, async (req, res) => {
+  try {
+    const jwtToken = req.header('token');
+    if (!jwtToken) {
+      return res.status(403).json('Not Authorized.');
+    }
+
+    const payload = jwt.verify(jwtToken, process.env.jwtSecret);
+
+    req.user = payload.user;
+
+    const user = await pool.query('SELECT * FROM users WHERE user_id = $1', [
+      req.user,
+    ]);
+    // console.log(userid);
+
+    res.status(200).json({ user: user.rows[0] });
   } catch (error) {
     res.status(500).send('Server Error');
   }
