@@ -12,6 +12,7 @@ app.use(morgan('dev'));
 
 // Auth Middleware
 app.use('/auth', require('./routes/jwtAuth'));
+app.use('/api/v1', require('./controllers/posts'));
 
 // init server
 const port = process.env.PORT || 4005;
