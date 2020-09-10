@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import background from '../img/login_background.png';
-import { Col, Row, Button, Form, FormGroup, Input } from 'reactstrap';
+import { Col, Row, Button, FormGroup, Input } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { register } from '../store/modules/auth/actions';
 import './styles/LoginRegister.css';
 
 const Register = () => {
@@ -17,22 +19,13 @@ const Register = () => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
 
-  // const onSubmitForm = async (e) => {
-  //   e.preventDefault();
+  const dispatch = useDispatch();
 
-  //   try {
-  //     const body = { email, username, password };
-
-  //     const response = await fetch('http://localhost:4000/auth/register', {
-  //       method: 'POST',
-  //       headers: { 'Content-Type': 'application/json' },
-
-  //       body: JSON.stringify(body),
-  //     });
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
+  const handleSubmit = (e) => {
+    console.log(input);
+    e.preventDefault();
+    dispatch(register(input));
+  };
 
   return (
     <>
@@ -57,7 +50,7 @@ const Register = () => {
                 value=''
                 id='defaultCheck1'
               />
-              <label className='form-check-label' for='defaultCheck1'>
+              <label className='form-check-label' htmlFor='defaultCheck1'>
                 I agree to get emails about cool stuff on Reddit
               </label>
             </div>
@@ -69,7 +62,7 @@ const Register = () => {
             <div className='dropdown-divider' style={{ margin: '30px' }}></div>
           </Col>
         </Row>
-        <Form>
+        <form onSubmit={handleSubmit}>
           <Row form>
             <Col md={12}>
               <FormGroup>
@@ -109,7 +102,7 @@ const Register = () => {
               </FormGroup>
             </Col>
           </Row>
-          <Button color='primary' block>
+          <Button color='primary' type='submit' block>
             SIGN UP
           </Button>
           <small className='form-text text-muted'>
@@ -123,7 +116,7 @@ const Register = () => {
               LOG IN
             </Link>{' '}
           </small>
-        </Form>
+        </form>
       </div>
     </>
   );

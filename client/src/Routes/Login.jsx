@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import background from '../img/login_background.png';
 import { Col, Row, Button, Form, FormGroup, Input } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import './styles/LoginRegister.css';
+import { login } from '../store/modules/auth/actions';
 
 const Login = () => {
   const [input, setInput] = useState({
@@ -16,22 +18,13 @@ const Login = () => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
 
-  // const onSubmitForm = async (e) => {
-  //   e.preventDefault();
+  const dispatch = useDispatch();
 
-  //   try {
-  //     const body = { email, password };
-
-  //     const response = await fetch('http://localhost:4000/auth/register', {
-  //       method: 'POST',
-  //       headers: { 'Content-Type': 'application/json' },
-
-  //       body: JSON.stringify(body),
-  //     });
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
+  const handleSubmit = async (e) => {
+    console.log(input);
+    e.preventDefault();
+    dispatch(login(input));
+  };
 
   return (
     <>
@@ -56,34 +49,25 @@ const Login = () => {
             <div className='dropdown-divider' style={{ margin: '30px' }}></div>
           </Col>
         </Row>
-        <Form>
-          <Row form>
-            <Col md={12}>
-              <FormGroup>
-                <Input
-                  type='email'
-                  name='email'
-                  placeholder='email'
-                  value={email}
-                  onChange={(e) => onChange(e)}
-                />
-              </FormGroup>
-            </Col>
-          </Row>
-          <Row form>
-            <Col md={12}>
-              <FormGroup>
-                <Input
-                  type='password'
-                  name='password'
-                  placeholder='password'
-                  value={password}
-                  onChange={(e) => onChange(e)}
-                />
-              </FormGroup>
-            </Col>
-          </Row>
-          <Button color='primary' block>
+
+        <form onSubmit={handleSubmit}>
+          <input
+            type='email'
+            name='email'
+            placeholder='email'
+            className='form-control my-3'
+            value={email}
+            onChange={(e) => onChange(e)}
+          />
+          <input
+            type='password'
+            name='password'
+            placeholder='password'
+            className='form-control my-3'
+            value={password}
+            onChange={(e) => onChange(e)}
+          />
+          <Button color='primary' type='submit' block>
             LOG IN
           </Button>
           <small className='form-text text-muted'>
@@ -97,7 +81,7 @@ const Login = () => {
               SIGN UP
             </Link>{' '}
           </small>
-        </Form>
+        </form>
       </div>
     </>
   );

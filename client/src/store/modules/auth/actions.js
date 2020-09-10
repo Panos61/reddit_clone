@@ -76,25 +76,60 @@ export const login = ({ email, password }) => {
 // };
 
 // register
+// export const register = ({ email, username, password }) => {
+//   const body = JSON.stringify({ email, username, password });
+
+//   return async (dispatch, setAuth) => {
+//     try {
+//       const res = await axios.post('http://localhost:4000/auth/register', body);
+//       let user = res.data;
+
+//       if (user.token) {
+//         localStorage.setItem('token', user.token);
+//         setAuthorizationToken(user.token);
+//         setAuth(true);
+//       }
+
+//       dispatch({ type: REGISTER_SUCCESS, payload: user });
+//       dispatch(clearErrors());
+//     } catch (error) {
+//       console.error(error);
+//       dispatch({ type: REGISTER_ERROR });
+//     }
+//   };
+// };
+
 export const register = ({ email, username, password }) => {
   const body = JSON.stringify({ email, username, password });
 
   return async (dispatch, setAuth) => {
     try {
-      const res = await axios.post('http://localhost:4000/auth/register', body);
-      let user = res.data;
+      const response = await fetch('http://localhost:4000/auth/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+          Accept: 'application/json',
+        },
+        mode: 'cors',
+        body: JSON.stringify(body),
+      });
 
-      if (user.token) {
-        localStorage.setItem('token', user.token);
-        setAuthorizationToken(user.token);
-        setAuth(true);
-      }
+      const parseRes = await response.json();
+      console.log(body);
 
-      dispatch({ type: REGISTER_SUCCESS, payload: user });
+      // if (parseRes.token) {
+      //   localStorage.setItem('token', parseRes.token);
+      //   setAuth(true);
+      // }
+      dispatch({ type: REGISTER_SUCCESS, payload: parseRes });
       dispatch(clearErrors());
+
+      history.push('/');
     } catch (error) {
       console.error(error);
       dispatch({ type: REGISTER_ERROR });
+      dispatch(returnErrors(error.message, error.id, 'REGISTER_SUCCESS'));
     }
   };
 };
