@@ -12,6 +12,7 @@ app.use(morgan('dev'));
 
 // Auth Middleware
 app.use('/auth', require('./routes/jwtAuth'));
+// Controllers Middleware
 app.use('/api/v1', require('./controllers/posts'));
 
 // init server
