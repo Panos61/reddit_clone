@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import background from '../img/login_background.png';
-import { Col, Row, Button, Form, FormGroup, Input } from 'reactstrap';
+import { Col, Row, Button, Input } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import './styles/LoginRegister.css';
@@ -51,7 +51,7 @@ const Login = () => {
         </Row>
 
         <form onSubmit={handleSubmit}>
-          <input
+          <Input
             type='email'
             name='email'
             placeholder='email'
@@ -59,7 +59,7 @@ const Login = () => {
             value={email}
             onChange={(e) => onChange(e)}
           />
-          <input
+          <Input
             type='password'
             name='password'
             placeholder='password'
