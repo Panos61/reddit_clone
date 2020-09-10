@@ -1,27 +1,40 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+// import { useDispatch } from 'react-redux';
+// import setAuthorizationToken, {
+//   getMe,
+// } from '../src/store/modules/auth/actions';
+// import store from './store';
+// import { SET_CURRENT_USER } from './store/modules/auth/types';
 import { Login, Register, Feed, Submit } from './Routes/index';
 import NotFound from './error404';
+import PrivateRoute from './PrivateRoute';
+import history from './history';
 
 const App = () => {
+  // const dispatch = useDispatch();
+  // if (localStorage.token) {
+  //   //setAuthorizationToken(localStorage.token);
+  //   dispatch(getMe());
+  //   store.dispatch({ type: SET_CURRENT_USER });
+  // }
+
   return (
-    <>
-      <Router>
-        <Switch>
-          <Route exact path='/' component={Feed} />
-          <Route exact path='/login' component={Login} />
-          <Route exact path='/register' component={Register} />
+    <Router history={history}>
+      <Switch>
+        <Route exact path='/' component={Feed} />
+        <Route exact path='/login' component={Login} />
+        <Route exact path='/register' component={Register} />
 
-          {/* Private Routes  */}
+        {/* Private Routes  */}
 
-          <Route exact path='/submit' component={Submit} />
+        <PrivateRoute exact path='/submit' component={Submit} />
 
-          {/* Error 404 - Not found */}
-          <Route path='*' component={NotFound} />
-        </Switch>
-      </Router>
-    </>
+        {/* Error 404 - Not found */}
+        <Route path='*' component={NotFound} />
+      </Switch>
+    </Router>
   );
 };
 
