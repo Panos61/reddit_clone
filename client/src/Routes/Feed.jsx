@@ -6,6 +6,9 @@ import setAuthorizationToken, { getMe } from '../store/modules/auth/actions';
 
 import store from '../store';
 import Posts from '../Posts/Posts';
+import { Row, Col, Container } from 'reactstrap';
+import HelpBox from '../Components/HelpBox';
+import SubmitPost from '../Components/Feed/SubmitPost';
 
 const Feed = () => {
   const dispatch = useDispatch();
@@ -23,8 +26,18 @@ const Feed = () => {
   return (
     <>
       <Header />
-      <h4 style={{ textAlign: 'center' }}>Feed</h4>
-      <Posts />
+      <h5 style={{ textAlign: 'center' }}>Feed</h5>
+      <Container>
+        <Row>
+          <Col lg='8'>
+            <SubmitPost />
+            <Posts />
+          </Col>
+          <Col lg='4'>
+            <HelpBox />
+          </Col>
+        </Row>
+      </Container>
     </>
   );
 };

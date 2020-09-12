@@ -1,0 +1,49 @@
+/* Submit Card */
+#feed-submit-card {
+  margin-bottom: 3%;
+}
+
+.submit__options img {
+  border-radius: 5px;
+  height: 2.5rem;
+}
+
+.submit__options {
+  display: flex;
+  flex: 1;
+}
+
+.submit__media {
+  display: flex;
+  padding: 10px;
+  cursor: pointer;
+  margin: 2px;
+  color: #878a8c;
+  margin-left: 10px;
+}
+
+.submit__link {
+  display: flex;
+  padding: 10px;
+  cursor: pointer;
+  margin: 2px;
+  color: #878a8c;
+}
+
+.submit__media:hover {
+  background-color: #e0e4e6ee;
+  border-radius: 3px;
+  padding: 10px;
+  text-decoration: none;
+  border-bottom: none;
+  color: #1a1a1b;
+}
+
+.submit__link:hover {
+  background-color: #e0e4e6ee;
+  border-radius: 3px;
+  padding: 10px;
+  text-decoration: none;
+  border-bottom: none;
+  color: #1a1a1b;
+}
