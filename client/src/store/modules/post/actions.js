@@ -16,6 +16,7 @@ import {
 } from './types';
 import { clearErrors, returnErrors } from '../errors/actions';
 import history from '../../../history';
+import axios from 'axios';
 
 export const submitPost = ({ title, content }) => {
   const body = JSON.stringify({ title, content });

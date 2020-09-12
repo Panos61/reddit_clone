@@ -38,14 +38,15 @@ controller.post('/submit', authorization, postValidation, async (req, res) => {
 
 // FETCH ALL POSTS
 controller.get('/feed', async (req, res) => {
+  let user_id = 'd5fc796e-77d3-4634-88d5-85d690f2601b';
   try {
-    const results = await pool.query('SELECT * FROM posts');
+    const results = await pool.query(
+      'SELECT * FROM posts FULL OUTER JOIN  users ON posts.user_id = users.user_id WHERE users.user_id = $1',
+      [user_id]
+    );
 
     res.status(200).json({
       status: 'success',
-      // data: {
-      //   posts: results.rows,
-      // },
       posts: results.rows,
     });
   } catch (error) {
