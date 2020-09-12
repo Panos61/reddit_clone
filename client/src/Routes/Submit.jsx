@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Card,
   CardTitle,
@@ -12,9 +12,22 @@ import {
   Input,
 } from 'reactstrap';
 import Header from '../Components/Header';
+import HelpBox from '../Components/HelpBox';
 import help from '../img/help.png';
 
 const Submit = () => {
+  const [input, setInput] = useState({
+    title: '',
+    content: '',
+  });
+
+  const { title, content } = input;
+
+  const onChange = (e) => {
+    e.preventDefault();
+    setInput({ ...input, [e.target.name]: [e.target.value] });
+  };
+
   return (
     <>
       <Header />
@@ -61,13 +74,21 @@ const Submit = () => {
                 </div>
               </CardTitle>
               <CardText>
-                <Input type='text' name='title' placeholder='Title' />
+                <Input
+                  type='text'
+                  name='title'
+                  value={title}
+                  placeholder='Title'
+                  onChange={(e) => onChange(e)}
+                />
               </CardText>
               <CardText>
                 <Input
                   type='textarea'
-                  name='text'
+                  name='content'
+                  value={content}
                   placeholder='Text (optional)'
+                  onChange={(e) => onChange(e)}
                 />
               </CardText>
             </Card>
@@ -112,45 +133,7 @@ const Submit = () => {
             </small>
           </Col>
           <Col sm={{ size: 4, offset: 8 }} style={{ marginTop: '2vh' }}>
-            <Card body>
-              <CardText>
-                <Row
-                  style={{
-                    color: '#3f2a23',
-                    fontSize: '13px',
-                    cursor: 'pointer',
-                  }}
-                >
-                  <Col sm={{ size: 4, offset: 0 }}>
-                    <ul>
-                      <li>Help</li>
-                      <li>Reddit App</li>
-                      <li>Reddit Coins</li>
-                      <li>Reddit Premium</li>
-                      <li>Reddit Gifts</li>
-                    </ul>
-                  </Col>
-                  <Col>
-                    <ul>
-                      <li>About</li>
-                      <li>Careers</li>
-                      <li>Press</li>
-                      <li>Advertise</li>
-                      <li>Blog</li>
-                      <li>Terms</li>
-                      <li>Content Policy</li>
-                      <li>Privacy Policy</li>
-                      <li>Mod Policy</li>
-                    </ul>
-                  </Col>
-                </Row>
-                <small>Reddit Inc © 2020. All rights reserved</small>
-              </CardText>
-            </Card>
-            <small style={{ color: '#7e7f82', fontWeight: '500' }}>
-              Please be mindful of reddit's content policy and practice good
-              reddiquette.
-            </small>
+            <HelpBox />
           </Col>
         </Row>
       </div>
