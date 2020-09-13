@@ -80,7 +80,7 @@ const Header = () => {
 
   return (
     <div>
-      <Navbar color='light' light expand='md'>
+      <Navbar color='light' light expand='md' className='fixed-top'>
         <NavbarBrand href='/' style={{ fontWeight: '500' }}>
           <img src={logo} alt='' />
           reddit

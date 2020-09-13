@@ -1,10 +1,10 @@
 import React from 'react';
-import { Card, CardTitle, CardText, Row, Col } from 'reactstrap';
+import { Card, CardText, Row, Col } from 'reactstrap';
 
 const HelpBox = () => {
   return (
     <>
-      <Card body>
+      <Card body style={{ marginTop: '10%' }}>
         <CardText>
           <Row
             style={{
