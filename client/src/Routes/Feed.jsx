@@ -9,6 +9,7 @@ import Posts from '../Posts/Posts';
 import { Row, Col, Container } from 'reactstrap';
 import HelpBox from '../Components/HelpBox';
 import SubmitPost from '../Components/Feed/SubmitPost';
+import SortBar from '../Components/Feed/SortBar';
 
 const Feed = () => {
   const dispatch = useDispatch();
@@ -31,6 +32,7 @@ const Feed = () => {
         <Row>
           <Col lg='8'>
             <SubmitPost />
+            <SortBar />
             <Posts />
           </Col>
           <Col lg='4'>

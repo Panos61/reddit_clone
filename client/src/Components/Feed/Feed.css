@@ -47,3 +47,59 @@
   border-bottom: none;
   color: #1a1a1b;
 }
+
+/* Sort Bar */
+#sort-bar-card {
+  margin-bottom: 3%;
+}
+
+.sort-bar-container {
+  display: flex;
+  flex: 1;
+}
+
+.sort-bar-option {
+  display: flex;
+  padding: 10px;
+  background-color: #ffffff;
+  border-radius: 15px;
+  cursor: pointer;
+  margin: 2px;
+  color: #878a8c;
+  margin-left: 10px;
+}
+
+.sort-bar-option span {
+  margin-left: 6px;
+  font-size: small;
+  font-weight: 600;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+    'Lucida Sans', Arial, sans-serif;
+}
+
+.sort-bar-option:hover {
+  background-color: #f6f7f8;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 15px;
+}
+
+.sort-bar-option:active {
+  color: #0079d3;
+}
+
+.sort-bar-view {
+  position: absolute;
+  right: 20px;
+  color: #0079d3;
+  font-size: 20px;
+  padding: 7px;
+  cursor: pointer;
+  border-radius: 15px;
+}
+
+.sort-bar-view :hover {
+  background-color: #f6f7f8;
+  cursor: pointer;
+  border-radius: 15px;
+}
