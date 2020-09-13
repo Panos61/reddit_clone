@@ -10,6 +10,7 @@ import { Row, Col, Container } from 'reactstrap';
 import HelpBox from '../Components/HelpBox';
 import SubmitPost from '../Components/Feed/SubmitPost';
 import SortBar from '../Components/Feed/SortBar';
+import Home from '../Components/Feed/Home';
 
 const Feed = () => {
   const dispatch = useDispatch();
@@ -27,15 +28,46 @@ const Feed = () => {
   return (
     <>
       <Header />
-      <h5 style={{ textAlign: 'center' }}>Feed</h5>
       <Container>
         <Row>
-          <Col lg='8'>
+          <Col lg='8' className='header-margin-top'>
             <SubmitPost />
             <SortBar />
             <Posts />
+            .. <br />
+            .. <br />
+            .. <br />
+            .. <br />
+            .. <br />
+            .. <br />
+            .. <br />
+            .. <br />
+            .. <br />
+            .. <br />
+            .. <br />
+            .. <br />
+            .. <br />
+            .. <br />
+            .. <br />
+            .. <br />
+            .. <br />
+            .. <br />
+            .. <br />
+            .. <br />
+            .. <br />
+            .. <br />
+            .. <br />
+            .. <br />
+            .. <br />
+            .. <br />
+            .. <br />
+            .. <br />
+            .. <br />
+            .. <br />
+            .. <br />
           </Col>
           <Col lg='4'>
+            <Home />
             <HelpBox />
           </Col>
         </Row>
