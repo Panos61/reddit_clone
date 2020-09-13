@@ -109,37 +109,6 @@
   border-radius: 15px;
 }
 
-/* Home Card */
-.home-btn-post {
-  background-color: #0079d3;
-  color: #ffffff;
-  border: 1px solid #0079d3;
-  margin-left: 15px;
-  font-weight: 600;
-  font-size: small;
-  border-radius: 4px;
-  padding: 5px 30px;
-  margin-bottom: 10px;
-}
-
-.home-btn-post:hover {
-  background-color: #42a0e9;
-}
-
-.home-btn-community {
-  border: 1px solid #0079d3;
-  background-color: #ffffff;
-  color: #0079d3;
-  font-weight: 600;
-  font-size: small;
-  border-radius: 4px;
-  padding: 5px 30px;
-}
-
-.home-btn-community:hover {
-  color: #42a0e9;
-}
-
 @media (max-width: 1999px) {
   .header-margin-top {
     margin-top: 7%;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card } from 'reactstrap';
+import { Button, Card } from 'reactstrap';
 import './Feed.css';
 import home from '../../img/home.png';
 import homereddit from '../../img/home-reddit.png';
@@ -36,13 +36,16 @@ const Home = () => {
           favorite communities.
         </span>
 
-        <button className='home-btn-post'>
-          <Link to='/submit'>CREATE POST </Link>
-        </button>
-
-        <button className='home-btn-community'>
-          <Link to='/'>CREATE COMMUNITY</Link>
-        </button>
+        <Button
+          color='primary'
+          size='sm'
+          style={{ fontWeight: '700', marginBottom: '10px' }}
+        >
+          CREATE POST
+        </Button>
+        <Button outline color='primary' size='sm' style={{ fontWeight: '700' }}>
+          CREATE COMMUNITY
+        </Button>
       </Card>
     </>
   );
