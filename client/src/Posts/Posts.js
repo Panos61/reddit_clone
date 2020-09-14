@@ -8,33 +8,33 @@ const Posts = () => {
   const postsSelector = useSelector((state) => state.Post);
   const dispatch = useDispatch();
 
-  const getAllPosts = () => dispatch(fetchPosts());
+  const getPosts = () => dispatch(fetchPosts());
 
   useEffect(() => {
-    getAllPosts();
+    getPosts();
   }, []);
-
-  if (postsSelector.posts.length === 0) {
-    return (
-      <div id='parent-notification'>
-        <div className='event-notification'>
-          <h2>Empty</h2>
-        </div>
-      </div>
-    );
-  }
 
   const posts = postsSelector.posts.map((post) => {
     return (
-      <>
-        <Link to={'/post/' + post.id} key={post.id}>
-          <Post post={post} key={post.id} />
-        </Link>
-      </>
+      <div key={post.post_id} style={{ marginTop: '2%' }}>
+        <Post post={post} key={post.post_id} />
+      </div>
     );
   });
 
-  return <div className='posts-container'>{posts}</div>;
+  return (
+    <div>
+      <div className='no-posts'>
+        {posts.length > 0 ? (
+          <>{posts}</>
+        ) : (
+          <div>
+            <p>No Posts yet :( </p>
+          </div>
+        )}
+      </div>
+    </div>
+  );
 };
 
 export default Posts;

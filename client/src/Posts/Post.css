@@ -1,0 +1,92 @@
+.post-card-top {
+  display: flex;
+  flex: 1;
+  margin-left: 10%;
+  margin-top: 1.2%;
+}
+
+.post-card-sub {
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.post-card-container {
+  margin-left: -1%;
+}
+
+.post-card-name-date {
+  font-size: small;
+  font-weight: 300;
+  /* margin-left: 1%; */
+}
+
+.post-card-title {
+  margin-top: 2%;
+  margin-left: 1%;
+  font-size: 1.2rem;
+  font-weight: 700;
+  display: flex;
+}
+
+.post-card-body {
+  margin-top: -3%;
+  font-size: 0.9rem;
+  margin-left: -2.2%;
+  display: flex;
+}
+
+.upvote-counter-container {
+  top: -30px;
+  left: 15px;
+  position: relative;
+}
+
+.upvote-counter-container i {
+  color: #878a8c;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.upvote-counter-container i:hover {
+  color: #ff4500;
+}
+
+.upvote-counter-container i:active {
+  color: #ff4500;
+}
+
+.upvote-counter {
+  font-size: 13.5px;
+  font-weight: 700;
+}
+
+.card-bottom-container {
+  display: flex;
+  flex: 1;
+  justify-items: flex-start;
+  margin-bottom: 4px;
+}
+
+.card-bottom-container-opt {
+  font-size: small;
+  padding: 4px;
+  font-weight: 500;
+  margin-inline: 3px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.card-bottom-container-opt:hover {
+  font-size: small;
+  padding: 4px;
+  background-color: rgb(235, 231, 231);
+  font-weight: 500;
+  margin-inline: 3px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .upvote-counter-container {
+    display: none;
+  }
+}
