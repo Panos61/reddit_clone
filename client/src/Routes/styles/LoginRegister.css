@@ -49,3 +49,11 @@
     width: 34vh;
   }
 }
+
+#login-background {
+  background-color: #ffffff;
+}
+
+#register-background {
+  background-color: #ffffff;
+}

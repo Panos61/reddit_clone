@@ -28,61 +28,67 @@ const Login = () => {
 
   return (
     <>
-      <div className='login-register-content'>
-        <img src={background} alt='' />
-      </div>
+      <section id='login-background'>
+        <div className='login-register-content'>
+          <img src={background} alt='' />
+        </div>
 
-      <div className='login-form'>
-        <Row form>
-          <Col md={12}>
-            <h5>Login</h5>
+        <div className='login-form'>
+          <Row form>
+            <Col md={12}>
+              <h5>Login</h5>
 
-            <p style={{ marginBottom: '50px' }}>
-              By continuing, you agree to our <Link to='/'>User Agreement</Link>{' '}
-              and <Link to='/'>Privacy Policy</Link> .{' '}
-            </p>
+              <p style={{ marginBottom: '50px' }}>
+                By continuing, you agree to our{' '}
+                <Link to='/'>User Agreement</Link> and{' '}
+                <Link to='/'>Privacy Policy</Link> .{' '}
+              </p>
 
-            {/* SOCIAL BTNS */}
-            <button className='btn-social'>CONTINUE WITH GOOGLE</button>
-            <button className='btn-social'>CONTINUE WITH APPLE</button>
+              {/* SOCIAL BTNS */}
+              <button className='btn-social'>CONTINUE WITH GOOGLE</button>
+              <button className='btn-social'>CONTINUE WITH APPLE</button>
 
-            <div className='dropdown-divider' style={{ margin: '30px' }}></div>
-          </Col>
-        </Row>
+              <div
+                className='dropdown-divider'
+                style={{ margin: '30px' }}
+              ></div>
+            </Col>
+          </Row>
 
-        <form onSubmit={handleSubmit}>
-          <Input
-            type='email'
-            name='email'
-            placeholder='email'
-            className='form-control my-3'
-            value={email}
-            onChange={(e) => onChange(e)}
-          />
-          <Input
-            type='password'
-            name='password'
-            placeholder='password'
-            className='form-control my-3'
-            value={password}
-            onChange={(e) => onChange(e)}
-          />
-          <Button color='primary' type='submit' block>
-            LOG IN
-          </Button>
-          <small className='form-text text-muted'>
-            Forgot your <Link to='/login'>username</Link> or{' '}
-            <Link to='/login'>password</Link> ?{' '}
-          </small>
+          <form onSubmit={handleSubmit}>
+            <Input
+              type='email'
+              name='email'
+              placeholder='email'
+              className='form-control my-3'
+              value={email}
+              onChange={(e) => onChange(e)}
+            />
+            <Input
+              type='password'
+              name='password'
+              placeholder='password'
+              className='form-control my-3'
+              value={password}
+              onChange={(e) => onChange(e)}
+            />
+            <Button color='primary' type='submit' block>
+              LOG IN
+            </Button>
+            <small className='form-text text-muted'>
+              Forgot your <Link to='/login'>username</Link> or{' '}
+              <Link to='/login'>password</Link> ?{' '}
+            </small>
 
-          <small className='mt-5'>
-            New to Reddit?{' '}
-            <Link to='/register' style={{ fontWeight: 'bold' }}>
-              SIGN UP
-            </Link>{' '}
-          </small>
-        </form>
-      </div>
+            <small className='mt-5'>
+              New to Reddit?{' '}
+              <Link to='/register' style={{ fontWeight: 'bold' }}>
+                SIGN UP
+              </Link>{' '}
+            </small>
+          </form>
+        </div>
+      </section>
     </>
   );
 };
