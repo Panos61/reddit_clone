@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 const Home = () => {
   return (
     <>
-      <Card body style={{ marginTop: '20%' }}>
+      <Card body style={{ marginTop: '10%' }}>
         <img src={home} alt='home' />
         <img
           src={homereddit}
