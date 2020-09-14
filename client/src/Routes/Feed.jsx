@@ -11,6 +11,7 @@ import HelpBox from '../Components/HelpBox';
 import SubmitPost from '../Components/Feed/SubmitPost';
 import SortBar from '../Components/Feed/SortBar';
 import Home from '../Components/Feed/Home';
+import TrendingCom from '../Components/Feed/TrendingCom';
 
 const Feed = () => {
   const dispatch = useDispatch();
@@ -28,7 +29,7 @@ const Feed = () => {
   return (
     <>
       <Header />
-      <Container>
+      <Container className='themed-container'>
         <Row>
           <Col lg='8' className='header-margin-top'>
             <SubmitPost />
@@ -67,6 +68,7 @@ const Feed = () => {
             .. <br />
           </Col>
           <Col lg='4'>
+            <TrendingCom />
             <Home />
             <HelpBox />
           </Col>

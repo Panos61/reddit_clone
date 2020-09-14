@@ -31,7 +31,7 @@ const Submit = () => {
   return (
     <>
       <Header />
-      <div className='container submit-container'>
+      <div className='container submit-container' style={{ marginTop: '3%' }}>
         <Row>
           <Col sm='8'>
             <h5>Create a post</h5>
