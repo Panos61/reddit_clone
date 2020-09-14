@@ -4,7 +4,7 @@ import { Card, CardBody } from 'reactstrap';
 const SortBar = () => {
   return (
     <>
-      <Card id='sort-bar-card'>
+      <Card id='sort-bar-card' style={{ borderColor: '#cccccc' }}>
         <CardBody>
           <div className='sort-bar-container'>
             <div className='sort-bar-option'>

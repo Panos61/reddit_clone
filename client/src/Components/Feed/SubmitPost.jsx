@@ -12,7 +12,7 @@ const SubmitPost = () => {
 
   return (
     <>
-      <Card id='feed-submit-card'>
+      <Card id='feed-submit-card' style={{ borderColor: '#cccccc' }}>
         <CardBody>
           <div className='submit__options'>
             <Media left href='#'>
