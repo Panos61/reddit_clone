@@ -11,6 +11,8 @@ import { Login, Register, Feed, Submit } from './Routes/index';
 import NotFound from './error404';
 import PrivateRoute from './PrivateRoute';
 import history from './history';
+import { Provider } from 'react-redux';
+import store from './store';
 
 const App = () => {
   // const dispatch = useDispatch();
@@ -21,20 +23,22 @@ const App = () => {
   // }
 
   return (
-    <Router history={history}>
-      <Switch>
-        <Route exact path='/' component={Feed} />
-        <Route exact path='/login' component={Login} />
-        <Route exact path='/register' component={Register} />
+    <Provider store={store}>
+      <Router history={history}>
+        <Switch>
+          <Route exact path='/' component={Feed} />
+          <Route exact path='/login' component={Login} />
+          <Route exact path='/register' component={Register} />
 
-        {/* Private Routes  */}
+          {/* Private Routes  */}
 
-        <PrivateRoute exact path='/submit' component={Submit} />
+          <PrivateRoute exact path='/submit' component={Submit} />
 
-        {/* Error 404 - Not found */}
-        <Route path='*' component={NotFound} />
-      </Switch>
-    </Router>
+          {/* Error 404 - Not found */}
+          <Route path='*' component={NotFound} />
+        </Switch>
+      </Router>
+    </Provider>
   );
 };
 
