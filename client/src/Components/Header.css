@@ -1,3 +1,7 @@
+.fixed-top {
+  border-bottom: 2px solid #edeff1;
+}
+
 img {
   height: 27px;
   margin-right: 5px;
@@ -12,7 +16,7 @@ img {
   width: 250%;
   position: relative;
   left: 17vw;
-  display: none;
+  display: flex;
 }
 
 .header__middle {
