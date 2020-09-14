@@ -16,7 +16,7 @@ const SubmitPost = () => {
         <CardBody>
           <div className='submit__options'>
             <Media left href='#'>
-              <img src={avatar} />
+              <img src={avatar} alt='avatar' />
             </Media>
 
             <Input type='text' placeholder='Create Post' onClick={onClick} />

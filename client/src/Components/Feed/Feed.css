@@ -127,6 +127,12 @@
   }
 }
 
+@media (max-width: 420px) {
+  .submit__options img {
+    display: none;
+  }
+}
+
 @media (max-width: 375px) {
   .header-margin-top {
     margin-top: 17%;
