@@ -4,8 +4,8 @@ import {
   FETCH_POSTS_SUCCESS,
   FETCH_POSTS_ERROR,
   LOADING_POST,
-  //   GET_POST_SUCCESS,
-  //   GET_POST_ERROR,
+  GET_POST_SUCCESS,
+  GET_POST_ERROR,
   //   UPDATE_POST_SUCCESS,
   //   UPDATE_POST_ERROR,
   //   DELETE_POST_SUCCESS,
@@ -17,6 +17,7 @@ import {
 import { clearErrors, returnErrors } from '../errors/actions';
 import history from '../../../history';
 
+// Submit a post
 export const submitPost = ({ title, content }) => {
   const body = JSON.stringify({ title, content });
   return async (dispatch) => {
@@ -38,6 +39,7 @@ export const submitPost = ({ title, content }) => {
   };
 };
 
+// Get all posts
 export const fetchPosts = () => {
   return async (dispatch) => {
     dispatch({ type: LOADING_POST });
@@ -54,6 +56,27 @@ export const fetchPosts = () => {
     } catch (error) {
       dispatch({ type: FETCH_POSTS_ERROR });
       dispatch(returnErrors(error.message, error.id, 'FETCH_POSTS_ERROR'));
+    }
+  };
+};
+
+// Get a post
+export const getPost = (id) => {
+  return async (dispatch) => {
+    dispatch({ type: LOADING_POST });
+
+    try {
+      const response = await fetch(`http://localhost:4000/api/v1/post/${id}`, {
+        method: 'GET',
+      });
+
+      const parseRes = await response.json();
+
+      dispatch({ type: GET_POST_SUCCESS, payload: parseRes });
+      dispatch(clearErrors());
+    } catch (error) {
+      dispatch({ type: GET_POST_ERROR });
+      dispatch(returnErrors(error.message, error.id, 'GET_POST_ERROR'));
     }
   };
 };

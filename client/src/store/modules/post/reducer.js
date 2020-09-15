@@ -3,10 +3,10 @@ import {
   SUBMIT_POST_ERROR,
   GET_POST_SUCCESS,
   GET_POST_ERROR,
-  UPDATE_POST_SUCCESS,
-  UPDATE_POST_ERROR,
-  DELETE_POST_SUCCESS,
-  DELETE_POST_ERROR,
+  // UPDATE_POST_SUCCESS,
+  // UPDATE_POST_ERROR,
+  // DELETE_POST_SUCCESS,
+  // DELETE_POST_ERROR,
   FETCH_POSTS_SUCCESS,
   FETCH_POSTS_ERROR,
   FETCH_AUTH_POSTS,
@@ -46,7 +46,6 @@ export const postReducer = (state = initState, action) => {
     case FETCH_POSTS_SUCCESS:
       return {
         ...state,
-        //posts: [payload, ...state.posts],
         posts: payload.posts,
         isLoading: false,
       };
@@ -56,6 +55,31 @@ export const postReducer = (state = initState, action) => {
         isLoading: false,
       };
 
+    case GET_POST_SUCCESS:
+      return {
+        ...state,
+        post: payload.post,
+        isLoading: false,
+      };
+
+    case GET_POST_ERROR:
+      return {
+        ...state,
+        isLoading: false,
+      };
+
+    case FETCH_AUTH_POSTS:
+      return {
+        ...state,
+        posts: payload,
+        isLoading: false,
+      };
+
+    case FETCH_AUTH_POSTS_ERROR:
+      return {
+        ...state,
+        isLoading: false,
+      };
     default:
       return state;
   }

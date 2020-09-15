@@ -50,7 +50,22 @@ controller.get('/feed', async (req, res) => {
       posts: results.rows,
     });
   } catch (error) {
-    console.error(error);
+    console.log(error);
+  }
+});
+
+controller.get('/post/:id', async (req, res) => {
+  try {
+    const results = await pool.query('SELECT * FROM posts WHERE post_id = $1', [
+      req.params.id,
+    ]);
+
+    res.status(200).json({
+      status: 'success',
+      post: results.rows[0],
+    });
+  } catch (error) {
+    console.log(error);
   }
 });
 
