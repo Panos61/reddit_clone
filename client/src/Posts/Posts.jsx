@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchPosts } from '../store/modules/post/actions';
-import Post from './Post';
+import Post from './Post.jsx';
 import { Link } from 'react-router-dom';
 
 const Posts = () => {
@@ -10,14 +10,22 @@ const Posts = () => {
 
   const getPosts = () => dispatch(fetchPosts());
 
-  useEffect(() => {
-    getPosts();
-  }, []);
+  useEffect(getPosts, []);
 
   const posts = postsSelector.posts.map((post) => {
     return (
-      <div key={post.post_id} style={{ marginTop: '2%' }}>
-        <Post post={post} key={post.post_id} />
+      <div
+        key={post.post_id}
+        style={{ marginTop: '2%' }}
+        className='post-card-hover'
+      >
+        <Link
+          to={'/post/' + post.post_id}
+          key={post.post_id}
+          style={{ color: 'unset', textDecoration: 'none' }}
+        >
+          <Post post={post} key={post.post_id} />
+        </Link>
       </div>
     );
   });
@@ -29,7 +37,7 @@ const Posts = () => {
           <>{posts}</>
         ) : (
           <div>
-            <p>No Posts yet :( </p>
+            <h6>No Posts yet :( </h6>
           </div>
         )}
       </div>
