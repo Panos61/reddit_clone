@@ -41,10 +41,14 @@ const Home = () => {
           size='sm'
           style={{ fontWeight: '700', marginBottom: '10px' }}
         >
-          CREATE POST
+          <Link to='/submit' style={{ color: 'unset', textDecoration: 'none' }}>
+            CREATE POST
+          </Link>
         </Button>
         <Button outline color='primary' size='sm' style={{ fontWeight: '700' }}>
-          CREATE COMMUNITY
+          <Link to='/' style={{ color: 'unset', textDecoration: 'none' }}>
+            CREATE COMMUNITY
+          </Link>
         </Button>
       </Card>
     </>
