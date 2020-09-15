@@ -21,7 +21,7 @@
 }
 
 .post-card-title {
-  margin-top: 2%;
+  margin-top: -1%;
   margin-left: 1%;
   font-size: 1.2rem;
   font-weight: 700;
@@ -58,6 +58,8 @@
 .upvote-counter {
   font-size: 13.5px;
   font-weight: 700;
+  position: relative;
+  left: 4.5px;
 }
 
 .card-bottom-container {
