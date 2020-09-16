@@ -1,0 +1,13 @@
+.create-sub-content img {
+  min-height: 100vh;
+  display: block;
+  position: relative;
+  max-width: 8vw;
+}
+
+.create-sub-form {
+  position: absolute;
+  left: 9%;
+  top: 13%;
+  width: 40vh;
+}
