@@ -7,12 +7,13 @@ import { Router, Switch, Route } from 'react-router-dom';
 // } from '../src/store/modules/auth/actions';
 // import store from './store';
 // import { SET_CURRENT_USER } from './store/modules/auth/types';
-import { Login, Register, Feed, Submit } from './Routes/index';
+import { Login, Register, Feed, Submit, CreateSub } from './Routes/index';
 import NotFound from './error404';
 import PrivateRoute from './PrivateRoute';
 import history from './history';
 import { Provider } from 'react-redux';
 import store from './store';
+import PostLink from './Posts/PostLink';
 
 const App = () => {
   // const dispatch = useDispatch();
@@ -29,11 +30,11 @@ const App = () => {
           <Route exact path='/' component={Feed} />
           <Route exact path='/login' component={Login} />
           <Route exact path='/register' component={Register} />
+          <Route exact path='/post/:id' component={PostLink} />
 
           {/* Private Routes  */}
-
           <PrivateRoute exact path='/submit' component={Submit} />
-
+          <Route exact path='/subreddits/create' component={CreateSub} />
           {/* Error 404 - Not found */}
           <Route path='*' component={NotFound} />
         </Switch>

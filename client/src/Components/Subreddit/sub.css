@@ -1,0 +1,11 @@
+.subnav-container {
+  width: 100vw;
+  height: 8vh;
+  background-color: rgb(255, 136, 0);
+}
+
+.subnav-menu {
+  width: 100vw;
+  height: 4vh;
+  background-color: rgb(238, 192, 189);
+}
