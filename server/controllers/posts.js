@@ -32,17 +32,16 @@ controller.post('/submit', authorization, postValidation, async (req, res) => {
       },
     });
   } catch (error) {
+    res.status(500).json('Server Error');
     console.error(error);
   }
 });
 
 // FETCH ALL POSTS
 controller.get('/feed', async (req, res) => {
-  let user_id = 'd5fc796e-77d3-4634-88d5-85d690f2601b';
   try {
     const results = await pool.query(
-      'SELECT * FROM posts FULL OUTER JOIN  users ON posts.user_id = users.user_id WHERE users.user_id = $1',
-      [user_id]
+      'SELECT * FROM posts INNER JOIN users ON posts.user_id = users.user_id'
     );
 
     res.status(200).json({
@@ -51,20 +50,24 @@ controller.get('/feed', async (req, res) => {
     });
   } catch (error) {
     console.log(error);
+    res.status(500).json('Server Error');
   }
 });
 
+// FETCH A POST
 controller.get('/post/:id', async (req, res) => {
   try {
-    const results = await pool.query('SELECT * FROM posts WHERE post_id = $1', [
-      req.params.id,
-    ]);
+    const results = await pool.query(
+      'SELECT * FROM posts INNER JOIN users ON posts.user_id = users.user_id WHERE post_id = $1',
+      [req.params.id]
+    );
 
     res.status(200).json({
       status: 'success',
       post: results.rows[0],
     });
   } catch (error) {
+    res.status(500).json('Server Error');
     console.log(error);
   }
 });
