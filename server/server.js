@@ -14,6 +14,7 @@ app.use(morgan('dev'));
 app.use('/auth', require('./routes/jwtAuth'));
 // Controllers Middleware
 app.use('/api/v1', require('./controllers/posts'));
+app.use('/api/v1', require('./controllers/subreddit'));
 
 // init server
 const port = process.env.PORT || 4005;
