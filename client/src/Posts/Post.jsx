@@ -36,7 +36,7 @@ const Post = ({ post }) => {
         <Row>
           <Col md='1' className='upvote-counter-container'>
             <i class='fa fa-arrow-up' aria-hidden='true' />
-            <div className='upvote-counter'>80</div>
+            <div className='upvote-counter'>•</div>
             <i class='fa fa-arrow-down' aria-hidden='true' />
           </Col>
           <Col md='11'>
