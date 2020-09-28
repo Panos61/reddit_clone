@@ -5,11 +5,6 @@ import { useDispatch } from 'react-redux';
 import Header from '../Components/Header';
 import { Col, Row, Label, Input, FormGroup } from 'reactstrap';
 import { createSub } from '../store/modules/subs/actions';
-import {
-  CREATE_SUBREDDIT_ERROR,
-  CREATE_SUBREDDIT_SUCCESS,
-} from '../store/modules/subs/types';
-import history from '../history';
 
 const CreateSub = () => {
   const dispatch = useDispatch();

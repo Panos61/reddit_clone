@@ -23,7 +23,7 @@ const Logout = () => {
           caret
           style={{ color: '#1c1c2a', fontSize: '15px' }}
         >
-          {currentUser ? currentUser.user.user_name : ''}
+          {currentUser ? currentUser.user.user_name : null}
         </DropdownToggle>
         <DropdownMenu right>
           <DropdownItem>

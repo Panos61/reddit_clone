@@ -1,9 +1,7 @@
 import React from 'react';
 import './App.css';
 import { Router, Switch, Route } from 'react-router-dom';
-// import { useDispatch } from 'react-redux';
 import { getMe } from '../src/store/modules/auth/actions';
-// import store from './store';
 import { SET_CURRENT_USER } from './store/modules/auth/types';
 import { useDispatch } from 'react-redux';
 import { Login, Register, Feed, Submit, CreateSub } from './Routes/index';
@@ -16,8 +14,8 @@ import PostLink from './Posts/PostLink';
 
 const App = () => {
   const dispatch = useDispatch();
+
   if (localStorage.token) {
-    //setAuthorizationToken(localStorage.token);
     dispatch(getMe());
     store.dispatch({ type: SET_CURRENT_USER });
   }

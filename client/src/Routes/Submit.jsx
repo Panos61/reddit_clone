@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Card,
   CardTitle,
@@ -11,6 +11,7 @@ import {
   DropdownItem,
   Input,
 } from 'reactstrap';
+import { useDispatch, useSelector } from 'react-redux';
 import Header from '../Components/Header';
 import HelpBox from '../Components/HelpBox';
 import help from '../img/help.png';
@@ -27,6 +28,8 @@ const Submit = () => {
     e.preventDefault();
     setInput({ ...input, [e.target.name]: [e.target.value] });
   };
+
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -49,10 +52,13 @@ const Submit = () => {
                 Choose a community
               </DropdownToggle>
               <DropdownMenu>
-                <DropdownItem header>Header</DropdownItem>
-                <DropdownItem disabled>Action</DropdownItem>
-                <DropdownItem>Another Action</DropdownItem>
-                <DropdownItem divider />
+                <DropdownItem
+                  header
+                  style={{ fontSize: '10px', fontWeight: 'bold' }}
+                >
+                  MY COMMUNITIES
+                </DropdownItem>
+                <DropdownItem>Actino</DropdownItem>
                 <DropdownItem>Another Action</DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
