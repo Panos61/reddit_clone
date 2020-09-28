@@ -1,32 +1,31 @@
 import React, { useState } from 'react';
 import './styles/CreateSub.css';
 import createsub from '../img/create-sub.png';
+import { useDispatch } from 'react-redux';
 import Header from '../Components/Header';
 import { Col, Row, Label, Input, FormGroup } from 'reactstrap';
-//import { createSub } from '../store/modules/subs/actions';
+import { createSub } from '../store/modules/subs/actions';
 
 const CreateSub = () => {
+  const dispatch = useDispatch();
+
   const [input, setInput] = useState({
     name: '',
     topic: '',
     description: '',
-    nsfw: '',
   });
 
-  const { name, topic, description, nsfw } = input;
+  const { name, topic, description } = input;
 
   const onChange = (e) => {
-    setInput({ ...input, [e.target.name]: [e.target.value] });
+    setInput({ ...input, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     console.log(input);
     e.preventDefault();
+    dispatch(createSub(input));
   };
-
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-
-  const toggle = () => setDropdownOpen((prevState) => !prevState);
 
   return (
     <>
@@ -87,7 +86,7 @@ const CreateSub = () => {
             </small>
             <Input
               type='textarea'
-              className='mt-1'
+              className='mt-1 form-control textarea'
               name='description'
               value={description}
               onChange={(e) => onChange(e)}
@@ -117,9 +116,9 @@ const CreateSub = () => {
               <Label check>
                 <Input
                   type='checkbox'
-                  value={nsfw}
-                  onChange={(e) => onChange(e)}
-                  name='nsfw'
+                  // value={nsfw}
+                  // onChange={(e) => onChange(e)}
+                  // name='nsfw'
                   disabled
                 />
                 <span
@@ -135,6 +134,7 @@ const CreateSub = () => {
             <button
               className='guest-btn-register mt-4'
               style={{ left: '45%', position: 'relative' }}
+              type='submit'
             >
               CREATE COMMUNITY
             </button>
