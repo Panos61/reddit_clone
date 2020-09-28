@@ -20,7 +20,7 @@ import history from '../../../history';
 // Submit a post
 export const submitPost = ({ title, content }) => {
   const body = JSON.stringify({ title, content });
-  return async (dispatch) => {
+  return async (dispatch, setAuth) => {
     try {
       const response = await fetch('http://localhost:4000/api/v1/submit', {
         method: 'POST',
@@ -28,6 +28,11 @@ export const submitPost = ({ title, content }) => {
         body: body,
       });
       const parseRes = await response.json();
+
+      if (parseRes.token) {
+        localStorage.setItem('token', parseRes.token);
+        setAuth(true);
+      }
 
       dispatch({ type: SUBMIT_POST_SUCCESS, payload: parseRes });
       dispatch(clearErrors());

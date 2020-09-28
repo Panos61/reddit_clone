@@ -40,8 +40,8 @@ router.post('/register', validInfo, async (req, res) => {
 
     // Server Response
     res.status(200).json({
-      user: user.rows[0],
-      token: token,
+      //user: user.rows[0],
+      token,
     });
   } catch (error) {
     res.status(500).send('Server Error!');

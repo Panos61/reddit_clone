@@ -22,10 +22,10 @@ const SubmitPost = () => {
             <Input type='text' placeholder='Create Post' onClick={onClick} />
 
             <div className='submit__media'>
-              <i class='fa fa-picture-o' aria-hidden='true' />
+              <i className='fa fa-picture-o' aria-hidden='true' />
             </div>
             <div className='submit__link'>
-              <i class='fa fa-link' aria-hidden='true' />
+              <i className='fa fa-link' aria-hidden='true' />
             </div>
           </div>
         </CardBody>

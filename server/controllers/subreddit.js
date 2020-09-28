@@ -9,6 +9,7 @@ controller.post('/subreddits/create', authorization, async (req, res) => {
   try {
     // Check for any token, if there is no token, then return 403 unauthorized
     const jwtToken = req.header('token');
+    console.log(jwtToken);
     if (!jwtToken) {
       return res.status(403).json('Not Authorized');
     }
@@ -20,12 +21,12 @@ controller.post('/subreddits/create', authorization, async (req, res) => {
     req.user = payload.user;
 
     // Destructure values
-    //const { name, topic, description } = req.body;
+    const { name, topic, description } = req.body;
 
     // Query
     const results = await pool.query(
       'INSERT INTO subreddits (subreddit_name, subreddit_topic, subreddit_desc, user_id) VALUES ($1, $2, $3, $4) RETURNING *',
-      [req.body.name, req.body.topic, req.body.description, payload.user]
+      [name, topic, description, payload.user]
     );
 
     // if no errors

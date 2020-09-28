@@ -12,7 +12,7 @@ export const subReducer = (state = initState, action) => {
     case CREATE_SUBREDDIT_SUCCESS:
       return {
         ...state,
-        subreddit: payload,
+        subreddit: [payload, ...state.subreddit],
         isLoading: false,
       };
 
