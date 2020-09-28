@@ -3,7 +3,6 @@ import background from '../img/login_background.png';
 import { Col, Row, Button, FormGroup, Input } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { register } from '../store/modules/auth/actions';
 import './styles/LoginRegister.css';
 import { REGISTER_ERROR, REGISTER_SUCCESS } from '../store/modules/auth/types';
 import history from '../history';
