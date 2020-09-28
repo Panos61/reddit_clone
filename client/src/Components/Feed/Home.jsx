@@ -46,7 +46,10 @@ const Home = () => {
           </Link>
         </Button>
         <Button outline color='primary' size='sm' style={{ fontWeight: '700' }}>
-          <Link to='/' style={{ color: 'unset', textDecoration: 'none' }}>
+          <Link
+            to='/subreddits/create'
+            style={{ color: 'unset', textDecoration: 'none' }}
+          >
             CREATE COMMUNITY
           </Link>
         </Button>

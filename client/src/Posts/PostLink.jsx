@@ -16,6 +16,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Header from '../Components/Header';
 import AboutCom from '../Components/Subreddit/AboutCom';
 import SubNav from '../Components/Subreddit/SubNav';
+import { Link } from 'react-router-dom';
 
 const PostLink = (props) => {
   const postID = props.match.params.id;
@@ -59,7 +60,7 @@ const PostLink = (props) => {
               <Row>
                 <Col md='1' className='upvote-counter-container'>
                   <i class='fa fa-arrow-up' aria-hidden='true' />
-                  <div className='upvote-counter'>80</div>
+                  <div className='upvote-counter'>•</div>
                   <i class='fa fa-arrow-down' aria-hidden='true' />
                 </Col>
                 <Col md='11'>
@@ -91,7 +92,9 @@ const PostLink = (props) => {
                       </div>
                     </div>
                   </CardText>
-                  <p>Comment as Meddle61</p>
+                  <p style={{ fontSize: 'small' }}>
+                    Comment as <Link to='/'>{post.user_name}</Link>{' '}
+                  </p>
                   <Container>
                     <Input type='textarea' />
                   </Container>

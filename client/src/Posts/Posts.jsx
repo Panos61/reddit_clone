@@ -10,7 +10,9 @@ const Posts = () => {
 
   const getPosts = () => dispatch(fetchPosts());
 
-  useEffect(getPosts, []);
+  useEffect(() => {
+    getPosts();
+  }, []);
 
   const posts = postsSelector.posts.map((post) => {
     return (

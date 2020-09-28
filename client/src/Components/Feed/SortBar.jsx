@@ -31,7 +31,7 @@ const SortBar = () => {
               <i className='fa fa-ellipsis-h' aria-hidden='true' />
             </div>
             <div className='sort-bar-view'>
-              <i class='fa fa-align-justify' aria-hidden='true'></i>{' '}
+              <i className='fa fa-align-justify' aria-hidden='true'></i>{' '}
             </div>
           </div>
         </CardBody>
