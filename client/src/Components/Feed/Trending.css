@@ -1,0 +1,29 @@
+.trending-card-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 2rem;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.1rem;
+}
+
+.trending-card-subs {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.trending-card-btn {
+  background-color: #0079d3;
+  color: #eeeeee;
+  font-weight: bolder;
+  text-align: center;
+  padding: 7px 3px;
+  border-color: unset;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.trending-card-btn:hover {
+  background-color: #79bcf0;
+}
