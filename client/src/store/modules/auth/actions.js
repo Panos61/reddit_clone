@@ -94,6 +94,8 @@ export const getMe = () => {
       if (user.token) {
         localStorage.setItem('token', user.token);
         setAuth(true);
+      } else if (!user.token) {
+        setAuth(false);
       }
 
       dispatch({ type: SET_CURRENT_USER, payload: user });

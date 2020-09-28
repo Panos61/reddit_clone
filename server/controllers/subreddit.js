@@ -42,6 +42,7 @@ controller.post('/subreddits/create', authorization, async (req, res) => {
   }
 });
 
+// Get a list of subreddits
 controller.get('/subreddits', async (req, res) => {
   try {
     const results = await pool.query('SELECT subreddit_name FROM subreddits');
@@ -55,5 +56,15 @@ controller.get('/subreddits', async (req, res) => {
     res.status(500).json('Server Error');
   }
 });
+
+// Get My Subreddits
+// controller.get('/my-subreddits', authorization, async (req, res) => {
+//   try {
+
+//    } catch (error) {
+//     console.log(error);
+//     res.status(500).json('Server Error');
+//   }
+// });
 
 module.exports = controller;
