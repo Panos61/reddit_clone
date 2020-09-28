@@ -42,4 +42,18 @@ controller.post('/subreddits/create', authorization, async (req, res) => {
   }
 });
 
+controller.get('/subreddits', async (req, res) => {
+  try {
+    const results = await pool.query('SELECT subreddit_name FROM subreddits');
+
+    res.status(200).json({
+      status: 'success',
+      subreddits: results.rows,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json('Server Error');
+  }
+});
+
 module.exports = controller;
