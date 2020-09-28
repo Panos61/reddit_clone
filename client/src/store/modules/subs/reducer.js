@@ -1,7 +1,13 @@
-import { CREATE_SUBREDDIT_SUCCESS, CREATE_SUBREDDIT_ERROR } from './types';
+import {
+  CREATE_SUBREDDIT_SUCCESS,
+  CREATE_SUBREDDIT_ERROR,
+  GET_SUBREDDITS_SUCCESS,
+  GET_SUBREDDITS_ERROR,
+} from './types';
 
 export const initState = {
-  subreddit: [],
+  subreddit: {},
+  subreddits: [],
   isLoading: false,
 };
 
@@ -12,11 +18,24 @@ export const subReducer = (state = initState, action) => {
     case CREATE_SUBREDDIT_SUCCESS:
       return {
         ...state,
-        subreddit: [payload, ...state.subreddit],
+        subreddit: payload.subreddit,
         isLoading: false,
       };
 
     case CREATE_SUBREDDIT_ERROR:
+      return {
+        ...state,
+        isLoading: false,
+      };
+
+    case GET_SUBREDDITS_SUCCESS:
+      return {
+        ...state,
+        subreddits: payload.subreddits,
+        isLoading: false,
+      };
+
+    case GET_SUBREDDITS_ERROR:
       return {
         ...state,
         isLoading: false,
