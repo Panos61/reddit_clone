@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 import background from '../img/login_background.png';
 import { Col, Row, Button, FormGroup, Input } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { register } from '../store/modules/auth/actions';
 import './styles/LoginRegister.css';
+import { REGISTER_ERROR, REGISTER_SUCCESS } from '../store/modules/auth/types';
+import history from '../history';
 
 const Register = () => {
   const [input, setInput] = useState({
@@ -21,14 +23,32 @@ const Register = () => {
 
   const dispatch = useDispatch();
 
-  const handleSubmit = (e) => {
-    console.log(input);
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(register(input));
+
+    try {
+      const body = { email, password, username };
+
+      const response = await fetch('http://localhost:4000/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+
+        body: JSON.stringify(body),
+      });
+
+      const parseRes = await response.json();
+      dispatch({ type: REGISTER_SUCCESS, payload: parseRes });
+
+      localStorage.setItem('token', parseRes.token);
+      history.push('/');
+    } catch (error) {
+      dispatch({ type: REGISTER_ERROR });
+      console.error(error);
+    }
   };
 
   return (
-    <>
+    <Fragment>
       <section id='register-background'>
         <div className='login-register-content'>
           <img src={background} alt='' />
@@ -124,7 +144,7 @@ const Register = () => {
           </form>
         </div>
       </section>
-    </>
+    </Fragment>
   );
 };
 

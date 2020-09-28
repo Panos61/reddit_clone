@@ -1,8 +1,6 @@
 import {
-  REGISTER_SUCCESS,
   LOGIN_SUCCESS,
   LOGIN_ERROR,
-  REGISTER_ERROR,
   LOGOUT_SUCCESS,
   // DELETE_USER_SUCCESS,
   // DELETE_USER_ERROR,
@@ -44,40 +42,44 @@ export const login = ({ email, password }) => {
 };
 
 // Register
-export const register = ({ email, username, password }) => {
-  const body = JSON.stringify({ email, username, password });
+// For some reason, it's not working (401) here but on the register file itself..
 
-  return async (dispatch, setAuth) => {
-    try {
-      const response = await fetch('http://localhost:4000/auth/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
-          Accept: 'application/json',
-        },
-        mode: 'cors',
-        body: JSON.stringify(body),
-      });
+// export const register = ({ email, username, password }) => {
+//   const body = JSON.stringify({ email, username, password });
 
-      const parseRes = await response.json();
-      console.log(body);
+//   return async (dispatch, setAuth) => {
+//     try {
+//       const response = await fetch('http://localhost:4000/auth/register', {
+//         method: 'POST',
+//         headers: {
+//           'Content-Type': 'application/json',
+//           'Access-Control-Allow-Origin': '*',
+//           Accept: 'application/json',
+//           'Access-Control-Allow-Credentials': ' true ',
+//         },
+//         mode: 'no-cors',
+//         body: JSON.stringify(body),
+//         credentials: 'include',
+//       });
 
-      // if (parseRes.token) {
-      //   localStorage.setItem('token', parseRes.token);
-      //   setAuth(true);
-      // }
-      dispatch({ type: REGISTER_SUCCESS, payload: parseRes });
-      dispatch(clearErrors());
+//       const parseRes = response.json();
 
-      history.push('/');
-    } catch (error) {
-      console.error(error);
-      dispatch({ type: REGISTER_ERROR });
-      dispatch(returnErrors(error.message, error.id, 'REGISTER_SUCCESS'));
-    }
-  };
-};
+//       if (parseRes.token) {
+//         localStorage.setItem('token', parseRes.token);
+//         setAuth(true);
+//       }
+
+//       dispatch({ type: REGISTER_SUCCESS, payload: parseRes });
+//       dispatch(clearErrors());
+
+//       history.push('/');
+//     } catch (error) {
+//       console.error(error);
+//       dispatch({ type: REGISTER_ERROR });
+//       dispatch(returnErrors(error.message, error.id, 'REGISTER_SUCCESS'));
+//     }
+//   };
+// };
 
 // Get Current user
 export const getMe = () => {
@@ -89,7 +91,6 @@ export const getMe = () => {
       });
 
       const user = await response.json();
-      // console.log(parseRes);
       if (user.token) {
         localStorage.setItem('token', user.token);
         setAuth(true);
