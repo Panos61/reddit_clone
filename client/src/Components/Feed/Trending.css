@@ -27,3 +27,13 @@
 .trending-card-btn:hover {
   background-color: #79bcf0;
 }
+
+@media (min-width: 992px) and (max-width: 1200px) {
+  .trending-card-subs {
+    font-size: 9.5px;
+  }
+
+  .trending-card-btn {
+    margin-left: 10px;
+  }
+}
