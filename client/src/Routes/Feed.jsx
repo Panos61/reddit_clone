@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import Header from '../Components/Header';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { SET_CURRENT_USER } from '../store/modules/auth/types';
 import { getMe } from '../store/modules/auth/actions';
 
@@ -14,12 +14,8 @@ import Home from '../Components/Feed/Home';
 import TrendingCom from '../Components/Feed/TrendingCom';
 
 const Feed = () => {
-  const dispatch = useDispatch();
-
-  if (localStorage.token) {
-    dispatch(getMe());
-    store.dispatch({ type: SET_CURRENT_USER });
-  }
+  const currentState = useSelector((state) => state);
+  const { isAuthenticated } = currentState.Auth;
 
   useEffect(() => {
     getMe();
@@ -31,7 +27,7 @@ const Feed = () => {
       <Container className='themed-container'>
         <Row>
           <Col lg='8' className='header-margin-top'>
-            <SubmitPost />
+            {isAuthenticated ? <SubmitPost /> : null}
             <SortBar />
             <Posts />
             .. <br />
