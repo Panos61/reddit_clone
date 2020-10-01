@@ -6,7 +6,6 @@ import {
   // DELETE_USER_ERROR,
   SET_CURRENT_USER,
 } from './types';
-import axios from 'axios';
 import history from '../../../history';
 import { clearErrors, returnErrors } from '../errors/actions';
 

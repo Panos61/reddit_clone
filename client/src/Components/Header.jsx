@@ -63,7 +63,9 @@ const guestMenu = (
             aria-hidden='true'
             style={{ marginRight: '8px' }}
           ></i>
-          Log In / Sign Up
+          <Link to='/login' style={{ color: 'unset', textDecoration: 'none' }}>
+            Log In / Sign Up
+          </Link>
         </DropdownItem>
       </DropdownMenu>
     </UncontrolledDropdown>
