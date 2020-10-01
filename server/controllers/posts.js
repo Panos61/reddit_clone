@@ -21,8 +21,14 @@ controller.post('/submit', authorization, postValidation, async (req, res) => {
     req.user = payload.user;
 
     const results = await pool.query(
-      'INSERT INTO posts (title, content, user_id) VALUES ($1, $2, $3) RETURNING *',
-      [req.body.title, req.body.content, payload.user]
+      'INSERT INTO posts (title, content, subreddit_name, created_at, user_id) VALUES ($1, $2, $3, $4, $5) RETURNING *',
+      [
+        req.body.title,
+        req.body.content,
+        req.body.subreddit,
+        new Date().toISOString(),
+        payload.user,
+      ]
     );
 
     res.status(201).json({
@@ -33,7 +39,7 @@ controller.post('/submit', authorization, postValidation, async (req, res) => {
     });
   } catch (error) {
     res.status(500).json('Server Error');
-    console.error(error);
+    console.log(error);
   }
 });
 

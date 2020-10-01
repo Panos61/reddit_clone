@@ -18,25 +18,32 @@ import { clearErrors, returnErrors } from '../errors/actions';
 import history from '../../../history';
 
 // Submit a post
-export const submitPost = ({ title, content }) => {
-  const body = JSON.stringify({ title, content });
+export const submitPost = ({ title, content, subreddit }) => {
+  const body = JSON.stringify({ title, content, subreddit });
   return async (dispatch, setAuth) => {
     try {
       const response = await fetch('http://localhost:4000/api/v1/submit', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+          Accept: 'application/json',
+          token: localStorage.token,
+        },
         body: body,
       });
       const parseRes = await response.json();
 
+      console.log(parseRes);
+
       if (parseRes.token) {
-        localStorage.setItem('token', parseRes.token);
+        localStorage.getItem('token', parseRes.token);
         setAuth(true);
       }
 
       dispatch({ type: SUBMIT_POST_SUCCESS, payload: parseRes });
       dispatch(clearErrors());
-      //  history.push('/');
+      history.push('/');
     } catch (error) {
       dispatch({ type: SUBMIT_POST_ERROR });
       dispatch(returnErrors(error.message, error.id, 'SUBMIT_POST_ERROR'));
