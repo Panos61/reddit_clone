@@ -10,6 +10,7 @@ import {
   CardText,
 } from 'reactstrap';
 import avatar from '../img/avatar.png';
+import Moment from 'react-moment';
 
 const Post = ({ post }) => {
   return (
@@ -29,7 +30,10 @@ const Post = ({ post }) => {
             </div>
 
             <div className='post-card-name-date'>
-              • Posted by u/{post.user_name} 11 hours ago
+              • Posted by u/{post.user_name}{' '}
+              <Moment fromNow ago>
+                {post.created_at}
+              </Moment>
             </div>
           </div>
         </CardTitle>
