@@ -1,20 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import {
-  Card,
-  CardTitle,
-  CardText,
-  Row,
-  Col,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  Input,
-} from 'reactstrap';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import './styles/Submit.css';
+import { Card, CardTitle, CardText, Row, Col, Input } from 'reactstrap';
+import { useDispatch } from 'react-redux';
 import Header from '../Components/Header';
 import HelpBox from '../Components/HelpBox';
 import help from '../img/help.png';
+import SelectSub from './components/selectSub';
 
 const Submit = () => {
   const [input, setInput] = useState({
@@ -29,8 +20,6 @@ const Submit = () => {
     setInput({ ...input, [e.target.name]: [e.target.value] });
   };
 
-  const dispatch = useDispatch();
-
   return (
     <>
       <Header />
@@ -39,29 +28,7 @@ const Submit = () => {
           <Col sm='8'>
             <h5>Create a post</h5>
             <div className='dropdown-divider' style={{ margin: '10px' }}></div>
-            <UncontrolledDropdown style={{ marginBottom: '10px' }}>
-              <DropdownToggle
-                caret
-                style={{
-                  backgroundColor: 'whitesmoke',
-                  color: '#8686a9',
-                  fontWeight: '500',
-                  fontSize: '15px',
-                }}
-              >
-                Choose a community
-              </DropdownToggle>
-              <DropdownMenu>
-                <DropdownItem
-                  header
-                  style={{ fontSize: '10px', fontWeight: 'bold' }}
-                >
-                  MY COMMUNITIES
-                </DropdownItem>
-                <DropdownItem>Actino</DropdownItem>
-                <DropdownItem>Another Action</DropdownItem>
-              </DropdownMenu>
-            </UncontrolledDropdown>
+            <SelectSub />
             <Card body>
               <CardTitle>
                 <div className='submit-header'>
@@ -96,6 +63,26 @@ const Submit = () => {
                   placeholder='Text (optional)'
                   onChange={(e) => onChange(e)}
                 />
+              </CardText>
+              <CardText>
+                <div className='bottom-line-container'>
+                  <div className='extra-bottom'>
+                    <button className='bottom-line-extra-btn'>OC</button>
+                    <button className='bottom-line-extra-btn'>SPOILER</button>
+                    <button className='bottom-line-extra-btn'>NSFW</button>
+                    <button className='bottom-line-extra-btn'>FLAIR</button>
+                  </div>
+                  <div className='primary-bottom-btns'>
+                    <button className='primary-bottom-btn-cancel'>
+                      CANCEL
+                    </button>
+                    <button className='primary-bottom-btn-post'>POST</button>
+                  </div>
+                </div>
+                <div
+                  className='dropdown-divider'
+                  style={{ margin: '10px' }}
+                ></div>
               </CardText>
             </Card>
           </Col>
