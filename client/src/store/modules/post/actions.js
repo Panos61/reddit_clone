@@ -36,7 +36,7 @@ export const submitPost = ({ title, content }) => {
 
       dispatch({ type: SUBMIT_POST_SUCCESS, payload: parseRes });
       dispatch(clearErrors());
-      history.push('/');
+      //  history.push('/');
     } catch (error) {
       dispatch({ type: SUBMIT_POST_ERROR });
       dispatch(returnErrors(error.message, error.id, 'SUBMIT_POST_ERROR'));

@@ -33,3 +33,7 @@
   color: #0079d3;
   background-color: #ffffff;
 }
+
+.primary-bottom-btn-cancel:hover {
+  color: #3199e9;
+}
