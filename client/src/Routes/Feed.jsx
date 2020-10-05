@@ -1,10 +1,7 @@
 import React, { useEffect } from 'react';
 import Header from '../Components/Header';
-import { useDispatch, useSelector } from 'react-redux';
-import { SET_CURRENT_USER } from '../store/modules/auth/types';
+import { useSelector } from 'react-redux';
 import { getMe } from '../store/modules/auth/actions';
-
-import store from '../store';
 import Posts from '../Posts/Posts';
 import { Row, Col, Container } from 'reactstrap';
 import HelpBox from '../Components/HelpBox';
