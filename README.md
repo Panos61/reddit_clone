@@ -3,4 +3,5 @@ Reddit clone using the PERN stack.
 
 <ins>Database design:</ins>
 
-![reddit_clone](https://user-images.githubusercontent.com/53904733/95201149-2afd9100-07e8-11eb-9561-544126aa7666.png)
+![reddit_clone_v3](https://user-images.githubusercontent.com/53904733/95207103-2b018f00-07f0-11eb-83ed-261feb649941.png)
+
