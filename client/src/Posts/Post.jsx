@@ -33,7 +33,8 @@ const Post = ({ post }) => {
               • Posted by u/{post.user_name}{' '}
               <Moment fromNow ago>
                 {post.created_at}
-              </Moment>
+              </Moment>{' '}
+              ago
             </div>
           </div>
         </CardTitle>
@@ -44,11 +45,11 @@ const Post = ({ post }) => {
             <i class='fa fa-arrow-down' aria-hidden='true' />
           </Col>
           <Col md='11'>
-            <CardTitle className='post-card-title'>{post.title}</CardTitle>
+            <CardTitle className='post-card-title'>{post.post_title}</CardTitle>
 
             <CardBody>
               <span className='post-card-body'>
-                {post.content}
+                {post.post_content}
                 <br />
               </span>
             </CardBody>

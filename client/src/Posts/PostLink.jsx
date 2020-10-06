@@ -17,6 +17,7 @@ import Header from '../Components/Header';
 import AboutCom from '../Components/Subreddit/AboutCom';
 import SubNav from '../Components/Subreddit/SubNav';
 import { Link } from 'react-router-dom';
+import Moment from 'react-moment';
 
 const PostLink = (props) => {
   const postID = props.match.params.id;
@@ -34,11 +35,13 @@ const PostLink = (props) => {
   return (
     <>
       <Header />
+
       <SubNav />
+
       <Container>
         <Row>
-          <Col sm='9'>
-            <Card style={{ marginTop: '5%' }}>
+          <Col sm='8'>
+            <Card style={{ marginTop: '3%' }}>
               <CardTitle>
                 <div className='post-card-top'>
                   {/* <div className='post-card-sub'>
@@ -53,7 +56,11 @@ const PostLink = (props) => {
                   </div> */}
 
                   <div className='post-card-name-date'>
-                    Posted by u/{post.user_name} 11 hours ago
+                    Posted by u/{post.user_name}{' '}
+                    <Moment fromNow ago>
+                      {post.created_at}
+                    </Moment>{' '}
+                    ago
                   </div>
                 </div>
               </CardTitle>
@@ -65,12 +72,12 @@ const PostLink = (props) => {
                 </Col>
                 <Col md='11'>
                   <CardTitle className='post-card-title'>
-                    {post.title}
+                    {post.post_title}
                   </CardTitle>
 
                   <CardBody>
                     <span className='post-card-body'>
-                      {post.content}
+                      {post.post_content}
                       <br />
                     </span>
                   </CardBody>
@@ -104,7 +111,7 @@ const PostLink = (props) => {
           </Col>
 
           {/* SUBREDDIT SIDE COMPONENTS */}
-          <Col sm='3' style={{ marginTop: '10%' }}>
+          <Col sm='4' style={{ marginTop: '10%' }}>
             <AboutCom />
           </Col>
         </Row>

@@ -21,7 +21,7 @@ controller.post('/submit', authorization, postValidation, async (req, res) => {
     req.user = payload.user;
 
     const results = await pool.query(
-      'INSERT INTO posts (title, content, subreddit_name, created_at, user_id) VALUES ($1, $2, $3, $4, $5) RETURNING *',
+      'INSERT INTO posts (post_title, post_content, subreddit_id, created_at, author_id) VALUES ($1, $2, $3, $4, $5) RETURNING *',
       [
         req.body.title,
         req.body.content,
@@ -47,7 +47,7 @@ controller.post('/submit', authorization, postValidation, async (req, res) => {
 controller.get('/feed', async (req, res) => {
   try {
     const results = await pool.query(
-      'SELECT * FROM posts INNER JOIN users ON posts.user_id = users.user_id'
+      'SELECT * FROM posts INNER JOIN users ON posts.author_id = users.user_id'
     );
 
     res.status(200).json({
@@ -64,9 +64,14 @@ controller.get('/feed', async (req, res) => {
 controller.get('/post/:id', async (req, res) => {
   try {
     const results = await pool.query(
-      'SELECT * FROM posts INNER JOIN users ON posts.user_id = users.user_id WHERE post_id = $1',
+      'SELECT * FROM posts INNER JOIN users ON posts.author_id = users.user_id  WHERE post_id = $1 ',
       [req.params.id]
     );
+
+    // const results_sec = await pool.query(
+    //   'SELECT subreddit_name, subreddit_topic, subreddit_desc, subreddits.created_at FROM subreddits LEFT JOIN posts ON subreddits.subreddit_id = posts.subreddit_id WHERE posts.post_id = $1',
+    //   [req.params.id]
+    // );
 
     res.status(200).json({
       status: 'success',

@@ -1,11 +1,37 @@
-.subnav-container {
-  width: 100vw;
-  height: 8vh;
-  background-color: rgb(255, 136, 0);
+.topnav {
+  overflow: hidden;
+  background-color: #8dca8f;
+  margin-top: 3%;
 }
 
-.subnav-menu {
-  width: 100vw;
-  height: 4vh;
-  background-color: rgb(238, 192, 189);
+.topnav a {
+  position: relative;
+  left: 20%;
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 6px 16px;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: bold;
+  border-bottom: 3px solid #8dca8f;
+}
+
+.topnav a.active {
+  border-bottom: 3px solid rgb(255, 255, 255);
+}
+
+.mid {
+  padding: 25px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  background-color: #2fc034;
+  color: white;
+}
+
+.mid span {
+  font-size: 21px;
+  font-weight: bold;
+  position: relative;
+  left: 20%;
 }

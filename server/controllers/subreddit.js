@@ -17,16 +17,17 @@ controller.post('/subreddits/create', authorization, async (req, res) => {
     // Verify token
     const payload = jwt.verify(jwtToken, process.env.jwtSecret);
 
-    // Assign logged-in user as the owner of the post
+    // Assign logged-in user as the administrator/creator of the subreddit
     req.user = payload.user;
 
     // Destructure values
     const { name, topic, description } = req.body;
 
-    // Query
+    // Query  => Create the subreddit
+
     const results = await pool.query(
-      'INSERT INTO subreddits (subreddit_name, subreddit_topic, subreddit_desc, user_id) VALUES ($1, $2, $3, $4) RETURNING *',
-      [name, topic, description, payload.user]
+      'INSERT INTO subreddits (subreddit_name, subreddit_topic, subreddit_desc, created_at, admin_id) VALUES ($1, $2, $3, $4, $5) RETURNING *',
+      [name, topic, description, new Date().toISOString(), payload.user]
     );
 
     // if no errors
@@ -45,7 +46,9 @@ controller.post('/subreddits/create', authorization, async (req, res) => {
 // Get a list of subreddits
 controller.get('/subreddits', async (req, res) => {
   try {
-    const results = await pool.query('SELECT subreddit_name FROM subreddits');
+    const results = await pool.query(
+      'SELECT subreddit_id, subreddit_name FROM subreddits'
+    );
 
     res.status(200).json({
       status: 'success',
@@ -57,14 +60,22 @@ controller.get('/subreddits', async (req, res) => {
   }
 });
 
-// Get My Subreddits
-// controller.get('/my-subreddits', authorization, async (req, res) => {
-//   try {
+// Get all subreddit info within a post link
+controller.get('/subreddits/info', async (req, res) => {
+  try {
+    const results = await pool.query(
+      'SELECT subreddit_name, subreddit_topic, subreddit_desc, subreddits.created_at FROM subreddits INNER JOIN posts ON subreddits.subreddit_id = posts.subreddit_id WHERE posts.post_id = $1',
+      [req.params.id]
+    );
 
-//    } catch (error) {
-//     console.log(error);
-//     res.status(500).json('Server Error');
-//   }
-// });
+    res.status(200).json({
+      status: 'success',
+      subreddit: results.rows[0],
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json('Server Error');
+  }
+});
 
 module.exports = controller;
