@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
 import { getPost } from '../store/modules/post/actions';
 import {
@@ -6,18 +7,18 @@ import {
   CardTitle,
   Row,
   Col,
-  Media,
   CardText,
   Container,
-  Input,
 } from 'reactstrap';
-import avatar from '../img/avatar.png';
+//import avatar from '../img/avatar.png';
 import { useDispatch, useSelector } from 'react-redux';
 import Header from '../Components/Header';
 import AboutCom from '../Components/Subreddit/AboutCom';
 import SubNav from '../Components/Subreddit/SubNav';
 import { Link } from 'react-router-dom';
 import Moment from 'react-moment';
+import NoComments from './components/NoComments';
+import Submit from './components/Submit';
 
 const PostLink = (props) => {
   const postID = props.match.params.id;
@@ -102,11 +103,14 @@ const PostLink = (props) => {
                   <p style={{ fontSize: 'small' }}>
                     Comment as <Link to='/'>{post.user_name}</Link>{' '}
                   </p>
+
                   <Container>
-                    <Input type='textarea' />
+                    <Submit />
                   </Container>
                 </Col>
               </Row>
+              {/* COMMENT SECTION */}
+              <NoComments />
             </Card>
           </Col>
 
