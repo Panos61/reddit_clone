@@ -1,15 +1,32 @@
-import React from 'react';
-import { Card, CardTitle, Button, CardBody } from 'reactstrap';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect } from 'react';
+import { Card, CardTitle, CardBody } from 'reactstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { getPost } from '../../store/modules/post/actions';
 
-const AboutCom = () => {
+const AboutCom = (props) => {
+  const postID = props.match.params.id;
+
+  const dispatch = useDispatch();
+  const post_link = (id) => dispatch(getPost(id));
+
+  const currentState = useSelector((state) => state);
+  //const post = currentState.Post.post;
+  const subreddit = currentState.Post.post;
+
+  useEffect(() => {
+    post_link(postID);
+  }, []);
+
   return (
     <>
       <Card>
-        <CardTitle>About Community</CardTitle>
+        <CardTitle>{subreddit.subreddit_name}</CardTitle>
         <CardBody>Some info..</CardBody>
       </Card>
     </>
   );
 };
 
-export default AboutCom;
+export default withRouter(AboutCom);

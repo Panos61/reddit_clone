@@ -1,11 +1,7 @@
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { getSubreddits } from '../../store/modules/subs/actions';
+import React from 'react';
 import './sub.css';
 
 const SubNav = () => {
-  const dispatch = useDispatch();
-
   return (
     <div class='topnav'>
       <div className='mid'>
