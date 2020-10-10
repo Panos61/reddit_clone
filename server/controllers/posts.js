@@ -47,7 +47,7 @@ controller.post('/submit', authorization, postValidation, async (req, res) => {
 controller.get('/feed', async (req, res) => {
   try {
     const results = await pool.query(
-      'SELECT * FROM posts INNER JOIN users ON posts.author_id = users.user_id '
+      'SELECT * FROM posts INNER JOIN users ON posts.author_id = users.user_id INNER JOIN subreddits ON posts.subreddit_id = subreddits.subreddit_id '
     );
 
     res.status(200).json({
@@ -64,7 +64,7 @@ controller.get('/feed', async (req, res) => {
 controller.get('/post/:id', async (req, res) => {
   try {
     const results = await pool.query(
-      'SELECT * FROM posts INNER JOIN users ON posts.author_id = users.user_id  WHERE post_id = $1 ',
+      'SELECT * FROM posts INNER JOIN users ON posts.author_id = users.user_id INNER JOIN subreddits ON posts.subreddit_id = subreddits.subreddit_id WHERE post_id = $1 ',
       [req.params.id]
     );
 

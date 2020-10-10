@@ -26,7 +26,7 @@ const Post = ({ post }) => {
                   style={{ borderRadius: '40px', height: '23px' }}
                 />
               </Media>
-              {/* r/javascript */}
+              r/{post.subreddit_name} {` `}
             </div>
 
             <div className='post-card-name-date'>
