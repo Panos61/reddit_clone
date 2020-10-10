@@ -29,7 +29,7 @@ const pStyle = {
 const NoComments = () => {
   return (
     <div style={divStyle}>
-      <i class='fa fa-comments' aria-hidden='true' style={iStyle}></i>
+      <i className='fa fa-comments' aria-hidden='true' style={iStyle}></i>
       <span style={spanStyle}>No Comments Yet</span>
       <p style={pStyle}>Be the first to share what you think!</p>
     </div>
