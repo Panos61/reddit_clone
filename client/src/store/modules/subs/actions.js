@@ -4,6 +4,8 @@ import {
   CREATE_SUBREDDIT_ERROR,
   GET_SUBREDDITS_SUCCESS,
   GET_SUBREDDITS_ERROR,
+  GET_SUBREDDIT_SUCCESS,
+  GET_SUBREDDIT_ERROR,
 } from './types';
 import history from '../../../history';
 
@@ -62,6 +64,28 @@ export const getSubreddits = () => {
       console.error(error);
       dispatch({ type: GET_SUBREDDITS_ERROR });
       dispatch(returnErrors(error.message, error.id, 'GET_SUBREDDITS_ERROR'));
+    }
+  };
+};
+
+export const getSubredditInfo = () => {
+  return async (dispatch) => {
+    try {
+      const response = await fetch(
+        'http://localhost:4000/api/v1/subreddits/info',
+        {
+          method: 'GET',
+        }
+      );
+
+      const parseRes = await response.json();
+
+      dispatch({ type: GET_SUBREDDIT_SUCCESS, payload: parseRes });
+      dispatch(clearErrors());
+    } catch (error) {
+      console.error(error);
+      dispatch({ type: GET_SUBREDDIT_ERROR });
+      dispatch(returnErrors(error.message, error.id, 'GET_SUBREDDIT_ERROR'));
     }
   };
 };

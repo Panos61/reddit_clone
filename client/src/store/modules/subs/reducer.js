@@ -3,6 +3,8 @@ import {
   CREATE_SUBREDDIT_ERROR,
   GET_SUBREDDITS_SUCCESS,
   GET_SUBREDDITS_ERROR,
+  GET_SUBREDDIT_SUCCESS,
+  GET_SUBREDDIT_ERROR,
 } from './types';
 
 export const initState = {
@@ -36,6 +38,19 @@ export const subReducer = (state = initState, action) => {
       };
 
     case GET_SUBREDDITS_ERROR:
+      return {
+        ...state,
+        isLoading: false,
+      };
+
+    case GET_SUBREDDIT_SUCCESS:
+      return {
+        ...state,
+        subreddit: payload.subreddit,
+        isLoading: false,
+      };
+
+    case GET_SUBREDDIT_ERROR:
       return {
         ...state,
         isLoading: false,
