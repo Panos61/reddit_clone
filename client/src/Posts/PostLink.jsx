@@ -53,7 +53,7 @@ const PostLink = (props) => {
                         style={{ borderRadius: '40px', height: '23px' }}
                       />
                     </Media>
-                    r/javascript
+                  
                   </div> */}
 
                   <div className='post-card-name-date'>
@@ -67,9 +67,9 @@ const PostLink = (props) => {
               </CardTitle>
               <Row>
                 <Col md='1' className='upvote-counter-container'>
-                  <i class='fa fa-arrow-up' aria-hidden='true' />
+                  <i className='fa fa-arrow-up' aria-hidden='true' />
                   <div className='upvote-counter'>•</div>
-                  <i class='fa fa-arrow-down' aria-hidden='true' />
+                  <i className='fa fa-arrow-down' aria-hidden='true' />
                 </Col>
                 <Col md='11'>
                   <CardTitle className='post-card-title'>
@@ -86,17 +86,18 @@ const PostLink = (props) => {
                   <CardText className='text-muted'>
                     <div className='card-bottom-container'>
                       <div className='card-bottom-container-opt'>
-                        <i class='fa fa-comment' aria-hidden='true' /> 0
+                        <i className='fa fa-comment' aria-hidden='true' /> 0
                         Comments
                       </div>
                       <div className='card-bottom-container-opt'>
-                        <i class='fa fa-gift' aria-hidden='true' /> Give Award
+                        <i className='fa fa-gift' aria-hidden='true' /> Give
+                        Award
                       </div>
                       <div className='card-bottom-container-opt'>
-                        <i class='fa fa-share' aria-hidden='true' /> Share
+                        <i className='fa fa-share' aria-hidden='true' /> Share
                       </div>
                       <div className='card-bottom-container-opt'>
-                        <i class='fa fa-bookmark' aria-hidden='true' /> Save
+                        <i className='fa fa-bookmark' aria-hidden='true' /> Save
                       </div>
                     </div>
                   </CardText>
@@ -115,7 +116,7 @@ const PostLink = (props) => {
           </Col>
 
           {/* SUBREDDIT SIDE COMPONENTS */}
-          <Col sm='4' style={{ marginTop: '10%' }}>
+          <Col sm='4' style={{ marginTop: '5%' }}>
             <AboutCom />
           </Col>
         </Row>
