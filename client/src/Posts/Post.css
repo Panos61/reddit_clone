@@ -87,6 +87,21 @@
   cursor: pointer;
 }
 
+/* Comment btn */
+.comment-btn {
+  float: right;
+  background-color: rgb(28, 187, 28);
+  color: #ffffff;
+  font-weight: 400;
+  border: none;
+  border-radius: 3px;
+  font-size: 13px;
+  padding: 3px 14px;
+  margin-top: 10px;
+}
+
+/* Media */
+
 @media (max-width: 768px) {
   .upvote-counter-container {
     display: none;
