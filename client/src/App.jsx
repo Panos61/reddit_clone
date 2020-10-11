@@ -11,6 +11,7 @@ import history from './history';
 import { Provider } from 'react-redux';
 import store from './store';
 import PostLink from './Posts/PostLink';
+import Subreddit from './Routes/Subreddit';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -28,6 +29,7 @@ const App = () => {
           <Route exact path='/login' component={Login} />
           <Route exact path='/register' component={Register} />
           <Route exact path='/post/:id' component={PostLink} />
+          <Route exact path='/subreddits/r/:id' component={Subreddit} />
 
           {/* Private Routes  */}
           <PrivateRoute exact path='/submit' component={Submit} />
