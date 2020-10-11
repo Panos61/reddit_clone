@@ -2,6 +2,7 @@ const pool = require('../db');
 const controller = require('express').Router();
 const authorization = require('../middleware/auth');
 const jwt = require('jsonwebtoken');
+const e = require('express');
 require('dotenv').config();
 
 // Create Subreddit
@@ -65,6 +66,24 @@ controller.get('/subreddits/info', async (req, res) => {
   try {
     const results = await pool.query(
       'SELECT subreddit_name, subreddit_topic, subreddit_desc, subreddits.created_at FROM subreddits INNER JOIN posts ON subreddits.subreddit_id = posts.subreddit_id WHERE posts.post_id = $1',
+      [req.params.id]
+    );
+
+    res.status(200).json({
+      status: 'success',
+      subreddit: results.rows[0],
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json('Server Error');
+  }
+});
+
+// Get all subreddit info within the subreddit link
+controller.get('/subreddits/r/:id', async (req, res) => {
+  try {
+    const results = await pool.query(
+      'SELECT * FROM subreddits INNER JOIN users ON subreddits.admin_id = users.user_id WHERE subreddits.subreddit_id = $1',
       [req.params.id]
     );
 

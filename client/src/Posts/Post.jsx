@@ -11,6 +11,7 @@ import {
 } from 'reactstrap';
 import avatar from '../img/avatar.png';
 import Moment from 'react-moment';
+import { Link } from 'react-router-dom';
 
 const Post = ({ post }) => {
   return (
@@ -26,7 +27,12 @@ const Post = ({ post }) => {
                   style={{ borderRadius: '40px', height: '23px' }}
                 />
               </Media>
-              r/{post.subreddit_name} {` `}
+              <Link
+                to={'/subreddits/r/' + post.subreddit_id}
+                key={post.subreddit_id}
+              >
+                r/{post.subreddit_name} {` `}
+              </Link>
             </div>
 
             <div className='post-card-name-date'>

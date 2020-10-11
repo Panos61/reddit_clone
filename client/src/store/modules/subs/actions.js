@@ -89,3 +89,25 @@ export const getSubredditInfo = () => {
     }
   };
 };
+
+export const getSubredditPage = (id) => {
+  return async (dispatch) => {
+    try {
+      const response = await fetch(
+        `http://localhost:4000/api/v1/subreddits/r/${id}`,
+        {
+          method: 'GET',
+        }
+      );
+
+      const parseRes = await response.json();
+
+      dispatch({ type: GET_SUBREDDIT_SUCCESS, payload: parseRes });
+      dispatch(clearErrors());
+    } catch (error) {
+      console.error(error);
+      dispatch({ type: GET_SUBREDDIT_ERROR });
+      dispatch(returnErrors(error.message, error.id, 'GET_SUBREDDIT_ERROR'));
+    }
+  };
+};
