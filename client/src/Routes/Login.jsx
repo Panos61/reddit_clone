@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import './styles/LoginRegister.css';
 import { login } from '../store/modules/auth/actions';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 
 const Login = () => {
   const [input, setInput] = useState({
@@ -32,7 +34,7 @@ const Login = () => {
         <div className='login-register-content'>
           <img src={background} alt='' />
         </div>
-
+        <ToastContainer autoClose={3000} />
         <div className='login-form'>
           <Row form>
             <Col md={12}>

@@ -6,6 +6,10 @@ import { useDispatch } from 'react-redux';
 import './styles/LoginRegister.css';
 import { REGISTER_ERROR, REGISTER_SUCCESS } from '../store/modules/auth/types';
 import history from '../history';
+import { clearErrors, returnErrors } from '../store/modules/errors/actions';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 
 const Register = () => {
   const [input, setInput] = useState({
@@ -36,13 +40,23 @@ const Register = () => {
       });
 
       const parseRes = await response.json();
-      dispatch({ type: REGISTER_SUCCESS, payload: parseRes });
 
-      localStorage.setItem('token', parseRes.token);
-      history.push('/');
+      if (parseRes.token) {
+        localStorage.setItem('token', parseRes.token);
+        dispatch({ type: REGISTER_SUCCESS, payload: parseRes });
+        history.push('/');
+      } else {
+        dispatch({ type: REGISTER_ERROR });
+        toast.error('Email or Password already exist!', {
+          position: toast.POSITION.TOP_CENTER,
+        });
+      }
+
+      dispatch(clearErrors());
     } catch (error) {
       dispatch({ type: REGISTER_ERROR });
       console.error(error);
+      dispatch(returnErrors(error.message, error.id, 'REGISTER_ERROR'));
     }
   };
 
@@ -52,7 +66,7 @@ const Register = () => {
         <div className='login-register-content'>
           <img src={background} alt='' />
         </div>
-
+        <ToastContainer autoClose={3000} />
         <div className='login-form'>
           <Row form>
             <Col md={12}>

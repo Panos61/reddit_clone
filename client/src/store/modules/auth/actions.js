@@ -8,6 +8,7 @@ import {
 } from './types';
 import history from '../../../history';
 import { clearErrors, returnErrors } from '../errors/actions';
+import { toast } from 'react-toastify';
 
 // Login
 export const login = ({ email, password }) => {
@@ -27,12 +28,19 @@ export const login = ({ email, password }) => {
       if (parseRes.token) {
         localStorage.setItem('token', parseRes.token);
         setAuth(true);
+        dispatch({ type: LOGIN_SUCCESS, payload: parseRes });
+        history.push('/');
+        toast.success('Logged In Successfully!', {
+          position: toast.POSITION.TOP_CENTER,
+        });
+      } else {
+        dispatch({ type: LOGIN_ERROR });
+        toast.error('Wrong Email or Password!', {
+          position: toast.POSITION.TOP_CENTER,
+        });
       }
 
-      dispatch({ type: LOGIN_SUCCESS, payload: parseRes });
       dispatch(clearErrors());
-
-      history.push('/');
     } catch (error) {
       dispatch({ type: LOGIN_ERROR });
       dispatch(returnErrors(error.message, error.id, 'LOGIN_ERROR'));
