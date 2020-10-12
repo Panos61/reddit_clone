@@ -13,8 +13,8 @@ import {
 //import avatar from '../img/avatar.png';
 import { useDispatch, useSelector } from 'react-redux';
 import Header from '../Components/Header';
-import AboutCom from '../Components/Subreddit/AboutCom';
-import SubNav from '../Components/Subreddit/SubNav';
+import AboutCom from '../Components/Post-Components/AboutCom';
+import SubNav from '../Components/Post-Components/SubNav';
 import { Link } from 'react-router-dom';
 import Moment from 'react-moment';
 import NoComments from './components/NoComments';
