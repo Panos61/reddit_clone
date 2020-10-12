@@ -1,12 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React from 'react';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import SubPosts from '../Posts/SubPosts';
 import { getSubredditPage } from '../store/modules/subs/actions';
 import { Row, Col, Container } from 'reactstrap';
 import HelpBox from '../Components/HelpBox';
 import Header from '../Components/Header';
+import MainSubNav from '../Components/Sub-Components/MainSubNav';
+import SubmitPost from '../Components/Feed/SubmitPost';
+import SortBar from '../Components/Feed/SortBar';
+import AboutSub from '../Components/Sub-Components/AboutSub';
 
 const Subreddit = (props) => {
   const subredditID = props.match.params.id;
@@ -23,17 +26,20 @@ const Subreddit = (props) => {
 
   return (
     <>
-      <span>{subreddit.subreddit_name}</span>
       <Header />
+      <MainSubNav />
 
       <Container>
-        <Row style={{ marginTop: '5%' }}>
+        <Row>
           <Col sm='8'>
+            <SubmitPost />
+            <SortBar />
             <SubPosts />
           </Col>
 
           {/* SUBREDDIT SIDE COMPONENTS */}
           <Col sm='4' style={{ marginTop: '5%' }}>
+            <AboutSub />
             <HelpBox />
           </Col>
         </Row>

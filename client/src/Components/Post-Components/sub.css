@@ -25,13 +25,18 @@
   padding: 25px 16px;
   text-decoration: none;
   font-size: 17px;
-  background-color: #2fc034;
+  background-color: #81819b;
   color: white;
 }
 
 .mid span {
   font-size: 22px;
   font-weight: bold;
+  position: relative;
+  left: 20%;
+}
+
+.mid p {
   position: relative;
   left: 20%;
 }
