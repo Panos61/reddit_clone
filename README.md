@@ -1,3 +1,6 @@
+ Disclaimer: A lot of details are missing or might be incomplete.
+              Git-clone this repository and keep adding stuff in it!
+
 # reddit_clone
 Reddit clone using the PERN stack.
 
@@ -8,6 +11,7 @@ Reddit clone using the PERN stack.
 -Create Posts
 
 -Join Communities
+
 
 
 <ins>Database design:</ins>
