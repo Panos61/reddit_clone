@@ -12,6 +12,8 @@ import {
   FETCH_AUTH_POSTS,
   FETCH_AUTH_POSTS_ERROR,
   LOADING_POST,
+  FETCH_SUB_POSTS_SUCCESS,
+  FETCH_SUB_POSTS_ERROR,
 } from './types';
 
 export const initState = {
@@ -63,6 +65,19 @@ export const postReducer = (state = initState, action) => {
       };
 
     case GET_POST_ERROR:
+      return {
+        ...state,
+        isLoading: false,
+      };
+
+    case FETCH_SUB_POSTS_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        posts: payload.posts,
+      };
+
+    case FETCH_SUB_POSTS_ERROR:
       return {
         ...state,
         isLoading: false,

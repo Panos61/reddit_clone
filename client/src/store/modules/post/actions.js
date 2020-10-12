@@ -6,6 +6,8 @@ import {
   LOADING_POST,
   GET_POST_SUCCESS,
   GET_POST_ERROR,
+  FETCH_SUB_POSTS_SUCCESS,
+  FETCH_SUB_POSTS_ERROR,
   //   UPDATE_POST_SUCCESS,
   //   UPDATE_POST_ERROR,
   //   DELETE_POST_SUCCESS,
@@ -89,6 +91,29 @@ export const getPost = (id) => {
     } catch (error) {
       dispatch({ type: GET_POST_ERROR });
       dispatch(returnErrors(error.message, error.id, 'GET_POST_ERROR'));
+    }
+  };
+};
+
+// Get all posts based on a specific subreddit
+export const getSubPosts = (id) => {
+  return async (dispatch) => {
+    dispatch({ type: LOADING_POST });
+
+    try {
+      const response = await fetch(
+        `http://localhost:4000/api/v1/subreddit-posts/r/${id}`,
+        {
+          method: 'GET',
+        }
+      );
+
+      const parseRes = await response.json();
+      dispatch({ type: FETCH_SUB_POSTS_SUCCESS, payload: parseRes });
+      dispatch(clearErrors());
+    } catch (error) {
+      dispatch({ type: FETCH_SUB_POSTS_ERROR });
+      dispatch(returnErrors(error.message, error.id, 'FETCH_SUB_POSTS_ERROR'));
     }
   };
 };

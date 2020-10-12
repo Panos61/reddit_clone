@@ -47,7 +47,7 @@ controller.post('/submit', authorization, postValidation, async (req, res) => {
 controller.get('/feed', async (req, res) => {
   try {
     const results = await pool.query(
-      'SELECT * FROM posts INNER JOIN users ON posts.author_id = users.user_id INNER JOIN subreddits ON posts.subreddit_id = subreddits.subreddit_id '
+      'SELECT * FROM posts INNER JOIN users ON posts.author_id = users.user_id INNER JOIN subreddits ON posts.subreddit_id = subreddits.subreddit_id ORDER BY posts.created_at DESC'
     );
 
     res.status(200).json({
@@ -75,6 +75,23 @@ controller.get('/post/:id', async (req, res) => {
   } catch (error) {
     res.status(500).json('Server Error');
     console.log(error);
+  }
+});
+
+controller.get('/subreddit-posts/r/:id', async (req, res) => {
+  try {
+    const results = await pool.query(
+      'SELECT * FROM posts INNER JOIN subreddits ON posts.subreddit_id = subreddits.subreddit_id INNER JOIN users ON posts.author_id = users.user_id WHERE subreddits.subreddit_id = $1',
+      [req.params.id]
+    );
+
+    res.status(200).json({
+      status: 'success',
+      posts: results.rows,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json('Server Error');
   }
 });
 
