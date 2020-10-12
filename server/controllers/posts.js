@@ -60,6 +60,36 @@ controller.get('/feed', async (req, res) => {
   }
 });
 
+// FETCH POSTS FROM JOINED SUBREDDITS
+controller.get('/my-feed', authorization, async (req, res) => {
+  try {
+    // Check for any token, if there is no token, then return 403 unauthorized
+    const jwtToken = req.header('token');
+    if (!jwtToken) {
+      return res.status(403).json('Not Authorized');
+    }
+
+    // Verify token
+    const payload = jwt.verify(jwtToken, process.env.jwtSecret);
+
+    // Assign logged-in user as the owner of the post
+    req.user = payload.user;
+
+    const results = await pool.query(
+      'SELECT * FROM posts INNER JOIN subreddits ON posts.subreddit_id = subreddits.subreddit_id INNER JOIN join_subreddit ON subreddits.subreddit_id = join_subreddit.subreddit_id INNER JOIN users ON join_subreddit.user_id = users.user_id WHERE users.user_id = $1',
+      [payload.user]
+    );
+
+    res.status(200).json({
+      status: 'success',
+      posts: results.rows,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json('Server Error');
+  }
+});
+
 // FETCH A POST
 controller.get('/post/:id', async (req, res) => {
   try {

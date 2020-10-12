@@ -53,7 +53,7 @@ export const submitPost = ({ title, content, subreddit }) => {
   };
 };
 
-// Get all posts
+// Get all posts as a visitor
 export const fetchPosts = () => {
   return async (dispatch) => {
     dispatch({ type: LOADING_POST });
@@ -61,6 +61,33 @@ export const fetchPosts = () => {
     try {
       const response = await fetch('http://localhost:4000/api/v1/feed', {
         method: 'GET',
+      });
+
+      const parseRes = await response.json();
+
+      dispatch({ type: FETCH_POSTS_SUCCESS, payload: parseRes });
+      dispatch(clearErrors());
+    } catch (error) {
+      dispatch({ type: FETCH_POSTS_ERROR });
+      dispatch(returnErrors(error.message, error.id, 'FETCH_POSTS_ERROR'));
+    }
+  };
+};
+
+// Fetch all posts from subs where user has joined in
+export const fetchMyFeed = () => {
+  return async (dispatch) => {
+    dispatch({ type: LOADING_POST });
+
+    try {
+      const response = await fetch('http://localhost:4000/api/v1/my-feed', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+          Accept: 'application/json',
+          token: localStorage.token,
+        },
       });
 
       const parseRes = await response.json();
