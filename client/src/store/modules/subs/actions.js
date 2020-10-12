@@ -6,6 +6,10 @@ import {
   GET_SUBREDDITS_ERROR,
   GET_SUBREDDIT_SUCCESS,
   GET_SUBREDDIT_ERROR,
+  JOIN_SUBREDDIT_SUCCESS,
+  JOIN_SUBREDDIT_ERROR,
+  GET_NEW_SUBREDDITS_SUCCESS,
+  GET_NEW_SUBREDDITS_ERROR,
 } from './types';
 import history from '../../../history';
 
@@ -68,6 +72,31 @@ export const getSubreddits = () => {
   };
 };
 
+// Get a list of new/unfollowed subreddits
+export const getNewSubreddits = () => {
+  return async (dispatch) => {
+    try {
+      const response = await fetch(
+        'http://localhost:4000/api/v1/subreddits/new',
+        {
+          method: 'GET',
+        }
+      );
+
+      const parseRes = await response.json();
+
+      dispatch({ type: GET_NEW_SUBREDDITS_SUCCESS, payload: parseRes });
+      dispatch(clearErrors());
+    } catch (error) {
+      console.error(error);
+      dispatch({ type: GET_NEW_SUBREDDITS_ERROR });
+      dispatch(
+        returnErrors(error.message, error.id, 'GET_NEW_SUBREDDITS_ERROR')
+      );
+    }
+  };
+};
+
 export const getSubredditInfo = () => {
   return async (dispatch) => {
     try {
@@ -108,6 +137,36 @@ export const getSubredditPage = (id) => {
       console.error(error);
       dispatch({ type: GET_SUBREDDIT_ERROR });
       dispatch(returnErrors(error.message, error.id, 'GET_SUBREDDIT_ERROR'));
+    }
+  };
+};
+
+// Join a subreddit
+export const joinSubreddit = (id) => {
+  return async (dispatch) => {
+    try {
+      const response = await fetch(
+        `http://localhost:4000/api/v1/subreddits/r/${id}/joined`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+            Accept: 'application/json',
+            token: localStorage.token,
+          },
+        }
+      );
+
+      const parseRes = response.json();
+
+      dispatch({ type: JOIN_SUBREDDIT_SUCCESS, payload: parseRes });
+      history.push('/');
+      dispatch(clearErrors());
+    } catch (error) {
+      console.log(error);
+      dispatch({ type: JOIN_SUBREDDIT_ERROR });
+      dispatch(returnErrors(error.message, error.id, 'JOIN_SUBREDDIT_ERROR'));
     }
   };
 };

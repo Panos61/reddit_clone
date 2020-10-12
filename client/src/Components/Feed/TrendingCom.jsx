@@ -1,29 +1,31 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
 import './Trending.css';
+
 import { Card, CardTitle, CardBody } from 'reactstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { getSubreddits } from '../../store/modules/subs/actions';
+import { getNewSubreddits } from '../../store/modules/subs/actions';
 import TrendingComLink from './TrendingComLink';
 
 const TrendingCom = () => {
   const dispatch = useDispatch();
 
   const subredditSelector = useSelector((state) => state.SubReddit);
-  const getaListOfSubs = () => dispatch(getSubreddits());
+  const getaListOfNewSubs = () => dispatch(getNewSubreddits());
 
   useEffect(() => {
-    getaListOfSubs();
+    getaListOfNewSubs();
   }, []);
 
   const subreddits = subredditSelector.subreddits.map((subreddit) => {
     return (
       <div key={subreddit.subreddit_id}>
         {' '}
-        <TrendingComLink
-          subreddit={subreddit}
+        {/* <Link
+          to={'/subreddits/r/:id' + subreddit.subreddit_id}
           key={subreddit.subreddit_id}
-        />{' '}
+        > */}
+        <TrendingComLink subreddit={subreddit} key={subreddit.subreddit_id} />{' '}
       </div>
     );
   });

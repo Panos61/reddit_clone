@@ -5,6 +5,10 @@ import {
   GET_SUBREDDITS_ERROR,
   GET_SUBREDDIT_SUCCESS,
   GET_SUBREDDIT_ERROR,
+  JOIN_SUBREDDIT_SUCCESS,
+  JOIN_SUBREDDIT_ERROR,
+  GET_NEW_SUBREDDITS_SUCCESS,
+  GET_NEW_SUBREDDITS_ERROR,
 } from './types';
 
 export const initState = {
@@ -56,6 +60,31 @@ export const subReducer = (state = initState, action) => {
         isLoading: false,
       };
 
+    case JOIN_SUBREDDIT_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        subreddits: payload.subreddits,
+      };
+
+    case JOIN_SUBREDDIT_ERROR:
+      return {
+        ...state,
+        isLoading: false,
+      };
+
+    case GET_NEW_SUBREDDITS_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        subreddits: payload.subreddits,
+      };
+
+    case GET_NEW_SUBREDDITS_ERROR:
+      return {
+        ...state,
+        isLoading: false,
+      };
     default:
       return state;
   }
