@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import SubPosts from '../Posts/SubPosts';
 import { getSubredditPage } from '../store/modules/subs/actions';
 import { Row, Col, Container } from 'reactstrap';
@@ -16,9 +16,9 @@ const Subreddit = (props) => {
 
   const dispatch = useDispatch();
   const subreddit_link = (id) => dispatch(getSubredditPage(id));
-  const currentState = useSelector((state) => state);
+  // const currentState = useSelector((state) => state);
 
-  const subreddit = currentState.SubReddit.subreddit;
+  // const subreddit = currentState.SubReddit.subreddit;
 
   useEffect(() => {
     subreddit_link(subredditID);

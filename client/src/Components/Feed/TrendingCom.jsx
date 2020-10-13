@@ -1,11 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
 import './Trending.css';
-
 import { Card, CardTitle, CardBody } from 'reactstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { getNewSubreddits } from '../../store/modules/subs/actions';
 import TrendingComLink from './TrendingComLink';
+import { Link } from 'react-router-dom';
 
 const TrendingCom = () => {
   const dispatch = useDispatch();
@@ -36,7 +36,16 @@ const TrendingCom = () => {
         <CardTitle>
           <h6 style={{ fontWeight: 'bold' }}>Trending Communities</h6>
         </CardTitle>
-        <CardBody>{subreddits}</CardBody>
+        <CardBody>
+          {subreddits.length > 0 ? (
+            <> {subreddits}</>
+          ) : (
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
+              <span>No more communities to display. :(</span>
+              <Link to='/subreddits/create'>Create Community!</Link>
+            </div>
+          )}
+        </CardBody>
       </Card>
     </>
   );
