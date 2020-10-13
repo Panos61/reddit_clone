@@ -11,6 +11,7 @@ import SortBar from '../Components/Feed/SortBar';
 import Home from '../Components/Feed/Home';
 import TrendingCom from '../Components/Feed/TrendingCom';
 import MyFeedPosts from '../Posts/MyFeedPosts';
+import VisitorTrending from '../Components/Feed/VisitorTrending';
 
 const Feed = () => {
   const currentState = useSelector((state) => state);
@@ -37,7 +38,8 @@ const Feed = () => {
             </h6>
           </Col>
           <Col lg='4'>
-            <TrendingCom />
+            {/* If user is authenticated, fetch a list of a all random communities to join, else fetch all random unjoined communities */}
+            {isAuthenticated ? <TrendingCom /> : <VisitorTrending />}
             <Home />
             <HelpBox />
           </Col>
