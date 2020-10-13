@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
 import Header from '../Components/Header';
 import { useSelector } from 'react-redux';
@@ -9,6 +10,7 @@ import SubmitPost from '../Components/Feed/SubmitPost';
 import SortBar from '../Components/Feed/SortBar';
 import Home from '../Components/Feed/Home';
 import TrendingCom from '../Components/Feed/TrendingCom';
+import MyFeedPosts from '../Posts/MyFeedPosts';
 
 const Feed = () => {
   const currentState = useSelector((state) => state);
@@ -22,42 +24,17 @@ const Feed = () => {
     <>
       <Header />
       <Container className='themed-container'>
-        <Row>
+        <Row style={{ marginBottom: '5vh' }}>
           <Col lg='8' className='header-margin-top'>
             {isAuthenticated ? <SubmitPost /> : null}
             <SortBar />
-            <Posts />
-            .. <br />
-            .. <br />
-            .. <br />
-            .. <br />
-            .. <br />
-            .. <br />
-            .. <br />
-            .. <br />
-            .. <br />
-            .. <br />
-            .. <br />
-            .. <br />
-            .. <br />
-            .. <br />
-            .. <br />
-            .. <br />
-            .. <br />
-            .. <br />
-            .. <br />
-            .. <br />
-            .. <br />
-            .. <br />
-            .. <br />
-            .. <br />
-            .. <br />
-            .. <br />
-            .. <br />
-            .. <br />
-            .. <br />
-            .. <br />
-            .. <br />
+            {/* If user is authenticated, fetch a list of a customized feed, else fetch all posts from any community */}
+            {isAuthenticated ? <MyFeedPosts /> : <Posts />}
+
+            <h6 style={{ color: 'red', marginTop: '2vh' }}>
+              Disclaimer: A lot of details are missing or might be incomplete.
+              Git-clone this repository and keep adding stuff in it!
+            </h6>
           </Col>
           <Col lg='4'>
             <TrendingCom />
