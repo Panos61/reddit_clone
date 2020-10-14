@@ -24,7 +24,7 @@ const Feed = () => {
       <Header />
       <Container className='themed-container'>
         <Row style={{ marginBottom: '5vh' }}>
-          <Col lg='8' xs='12' className='header-margin-top'>
+          <Col lg='8' className='header-margin-top'>
             {isAuthenticated ? <SubmitPost /> : null}
             <SortBar />
             <Posts />

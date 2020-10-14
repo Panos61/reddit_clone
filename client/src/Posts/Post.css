@@ -113,4 +113,22 @@
   .upvote-counter-container {
     display: none;
   }
+
+  .post-card-title {
+    margin-left: 8%;
+  }
+
+  .post-card-body {
+    margin-left: 5%;
+  }
+}
+
+@media (max-width: 500px) {
+  .post-card-sub img {
+    display: none;
+  }
+
+  .post-card-name-date .posted-by {
+    display: none;
+  }
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import './Post.css';
+import { useSelector } from 'react-redux';
 import {
   Card,
   CardBody,
@@ -14,6 +15,13 @@ import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
 
 const Post = ({ post }) => {
+  const currentState = useSelector((state) => state);
+  const { isAuthenticated } = currentState.Auth;
+
+  const userProfile = isAuthenticated
+    ? `/users/${currentState.Auth.currentUser.user.user_id}`
+    : '';
+
   return (
     <>
       <Card style={{ borderColor: '#cccccc' }}>
@@ -35,7 +43,13 @@ const Post = ({ post }) => {
               </Link>
             </div>
             <div className='post-card-name-date'>
-              • Posted by u/{post.user_name}{' '}
+              • <span className='posted-by'>Posted by </span>
+              <Link
+                to={userProfile}
+                style={{ color: 'unset', textDecoration: 'none' }}
+              >
+                u/{post.user_name ? post.user_name : <span>[deleted]</span>}{' '}
+              </Link>
               <Moment fromNow ago>
                 {post.created_at}
               </Moment>{' '}

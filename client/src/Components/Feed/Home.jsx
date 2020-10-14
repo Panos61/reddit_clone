@@ -21,7 +21,9 @@ const Home = () => {
             zIndex: 3,
           }}
         />
-        <span style={{ position: 'relative', top: '-50px', left: '20%' }}>
+        <span
+          style={{ position: 'relative', top: '-50px', textAlign: 'center' }}
+        >
           Home
         </span>
         <span

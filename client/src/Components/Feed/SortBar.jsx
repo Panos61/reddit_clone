@@ -22,17 +22,17 @@ const SortBar = () => {
                 <span>New</span>
               </i>
             </div>
-            <div className='sort-bar-option'>
+            {/* <div className='sort-bar-option'>
               <i className='fa fa-bar-chart' aria-hidden='true'>
                 <span>Top</span>
               </i>
-            </div>
-            <div className='sort-bar-option'>
+            </div> */}
+            {/* <div className='sort-bar-option'>
               <i className='fa fa-ellipsis-h' aria-hidden='true' />
-            </div>
-            <div className='sort-bar-view'>
+            </div> */}
+            {/* <div className='sort-bar-view'>
               <i className='fa fa-align-justify' aria-hidden='true'></i>{' '}
-            </div>
+            </div> */}
           </div>
         </CardBody>
       </Card>
