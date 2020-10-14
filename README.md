@@ -17,3 +17,7 @@ Reddit clone using the PERN stack.
 <ins>Database design:</ins>
 
 ![reddit_clone_db_design](https://user-images.githubusercontent.com/53904733/95792286-d9736b80-0ceb-11eb-8b4b-cb2ac4739bd5.png)
+
+
+<ins>Screenshots:</ins>
+![reddit1](https://user-images.githubusercontent.com/53904733/95974740-0627a000-0e1e-11eb-92e5-3a7e0ba80ed2.png)
