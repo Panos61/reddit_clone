@@ -5,10 +5,12 @@ import {
   // DELETE_USER_SUCCESS,
   // DELETE_USER_ERROR,
   SET_CURRENT_USER,
+  DELETE_USER_SUCCESS,
 } from './types';
 import history from '../../../history';
 import { clearErrors, returnErrors } from '../errors/actions';
 import { toast } from 'react-toastify';
+import { DELETE_POST_ERROR } from '../post/types';
 
 // Login
 export const login = ({ email, password }) => {
@@ -120,4 +122,23 @@ export const logout = () => (dispatch, setAuth) => {
   dispatch({ type: LOGOUT_SUCCESS });
   dispatch(clearErrors());
   history.push('/');
+};
+
+// Delete User
+export const deleteUser = (id) => {
+  return async (dispatch) => {
+    try {
+      const response = await fetch(`http://localhost:4000/auth/users/${id}`, {
+        method: 'DELETE',
+      });
+      const parseRes = response.json();
+      dispatch({ type: DELETE_USER_SUCCESS, payload: parseRes });
+      dispatch(clearErrors());
+      window.localStorage.clear();
+      window.location.href = '/';
+    } catch (error) {
+      dispatch({ type: DELETE_POST_ERROR });
+      dispatch(returnErrors());
+    }
+  };
 };

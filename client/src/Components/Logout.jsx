@@ -7,13 +7,18 @@ import {
   DropdownItem,
   UncontrolledDropdown,
 } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 const Logout = () => {
   const dispatch = useDispatch();
   const currentState = useSelector((state) => state);
-  const { currentUser } = currentState.Auth;
+  const { currentUser, isAuthenticated } = currentState.Auth;
 
   const logoutUser = () => dispatch(logout());
+
+  const userProfile = isAuthenticated
+    ? `/users/${currentState.Auth.currentUser.user.user_id}`
+    : '';
 
   return (
     <>
@@ -32,7 +37,12 @@ const Logout = () => {
               aria-hidden='true'
               style={{ marginRight: '8px' }}
             ></i>
-            My Profile
+            <Link
+              to={userProfile}
+              style={{ textDecoration: 'none', color: 'unset' }}
+            >
+              My Profile
+            </Link>
           </DropdownItem>
           <DropdownItem>
             <i

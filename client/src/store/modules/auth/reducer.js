@@ -7,6 +7,8 @@ import {
   // DELETE_USER_SUCCESS,
   // DELETE_USER_ERROR,
   SET_CURRENT_USER,
+  DELETE_USER_SUCCESS,
+  DELETE_USER_ERROR,
 } from './types';
 import isEmpty from 'lodash/isEmpty';
 
@@ -50,6 +52,20 @@ const authReducer = (state = initState, action) => {
         ...state,
         currentUser: {},
         isAuthenticated: false,
+        isLoading: false,
+      };
+
+    case DELETE_USER_SUCCESS:
+      return {
+        ...state,
+        currentUser: {},
+        isAuthenticated: false,
+        isLoading: false,
+      };
+
+    case DELETE_USER_ERROR:
+      return {
+        ...state,
         isLoading: false,
       };
     default:
