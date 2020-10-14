@@ -5,11 +5,6 @@ import { joinSubreddit } from '../../store/modules/subs/actions';
 const TrendingComLink = ({ subreddit }) => {
   const dispatch = useDispatch();
 
-  const handleJoin = (e) => {
-    e.preventDefault();
-    dispatch(joinSubreddit(subreddit.subreddit_id));
-  };
-
   return (
     <>
       <div className='trending-card-container'>
@@ -20,9 +15,7 @@ const TrendingComLink = ({ subreddit }) => {
           </span>
         </div>
 
-        <div className='trending-card-btn' onClick={(e) => handleJoin(e)}>
-          JOIN
-        </div>
+        <div className='trending-card-btn'>JOIN</div>
       </div>
     </>
   );

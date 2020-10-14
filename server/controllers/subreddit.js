@@ -52,24 +52,7 @@ controller.post(
 // Get a list of subreddits
 controller.get('/subreddits', async (req, res) => {
   try {
-    const results = await pool.query(
-      'SELECT subreddit_id, subreddit_name FROM subreddits'
-    );
-
-    res.status(200).json({
-      status: 'success',
-      subreddits: results.rows,
-    });
-  } catch (error) {
-    console.log(error);
-    res.status(500).json('Server Error');
-  }
-});
-
-// Get a list of followed subreddits
-controller.get('/subreddits/new', async (req, res) => {
-  try {
-    const results = await pool.query('SELECT * FROM subreddits ');
+    const results = await pool.query('SELECT * FROM subreddits');
 
     res.status(200).json({
       status: 'success',

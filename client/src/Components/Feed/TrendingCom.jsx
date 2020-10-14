@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import './Trending.css';
 import { Card, CardTitle, CardBody } from 'reactstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { getNewSubreddits } from '../../store/modules/subs/actions';
+import { getSubreddits } from '../../store/modules/subs/actions';
 import TrendingComLink from './TrendingComLink';
 import { Link } from 'react-router-dom';
 
@@ -11,20 +11,15 @@ const TrendingCom = () => {
   const dispatch = useDispatch();
 
   const subredditSelector = useSelector((state) => state.SubReddit);
-  const getaListOfNewSubs = () => dispatch(getNewSubreddits());
+  const getaListOfSubs = () => dispatch(getSubreddits());
 
   useEffect(() => {
-    getaListOfNewSubs();
+    getaListOfSubs();
   }, []);
 
   const subreddits = subredditSelector.subreddits.map((subreddit) => {
     return (
       <div key={subreddit.subreddit_id}>
-        {' '}
-        {/* <Link
-          to={'/subreddits/r/:id' + subreddit.subreddit_id}
-          key={subreddit.subreddit_id}
-        > */}
         <TrendingComLink subreddit={subreddit} key={subreddit.subreddit_id} />{' '}
       </div>
     );
