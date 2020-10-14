@@ -69,9 +69,7 @@ controller.get('/subreddits', async (req, res) => {
 // Get a list of followed subreddits
 controller.get('/subreddits/new', async (req, res) => {
   try {
-    const results = await pool.query(
-      'SELECT * FROM subreddits WHERE subreddits.subreddit_id NOT IN (SELECT subreddit_id FROM join_subreddit)'
-    );
+    const results = await pool.query('SELECT * FROM subreddits ');
 
     res.status(200).json({
       status: 'success',

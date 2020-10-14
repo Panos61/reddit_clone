@@ -3,6 +3,7 @@ import Header from '../Components/Header';
 import { Container, Row, Col } from 'reactstrap';
 import AboutUser from '../Components/Profile/AboutUser';
 import AuthPosts from '../Components/Profile/AuthPosts';
+import HelpBox from '../Components/HelpBox';
 
 const Profile = () => {
   return (
@@ -18,6 +19,7 @@ const Profile = () => {
           </Col>
           <Col lg='4'>
             <AboutUser />
+            <HelpBox />
           </Col>
         </Row>
       </Container>
