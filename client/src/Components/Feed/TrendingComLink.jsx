@@ -1,10 +1,6 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { joinSubreddit } from '../../store/modules/subs/actions';
 
 const TrendingComLink = ({ subreddit }) => {
-  const dispatch = useDispatch();
-
   return (
     <>
       <div className='trending-card-container'>
