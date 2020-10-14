@@ -34,7 +34,6 @@ const Post = ({ post }) => {
                 r/{post.subreddit_name} {` `}
               </Link>
             </div>
-
             <div className='post-card-name-date'>
               • Posted by u/{post.user_name}{' '}
               <Moment fromNow ago>

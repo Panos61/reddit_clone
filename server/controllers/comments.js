@@ -8,7 +8,7 @@ require('dotenv').config();
 
 // CREATE COMMENT
 controller.post(
-  '/comments/submit/:id',
+  'post/:id',
   authorization,
   commentValidation,
   async (req, res) => {

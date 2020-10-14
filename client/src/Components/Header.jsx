@@ -5,8 +5,8 @@ import {
   NavbarToggler,
   NavbarBrand,
   Nav,
-  NavItem,
-  Input,
+  // NavItem,
+  // Input,
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
@@ -89,28 +89,7 @@ const Header = () => {
         </NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
-          <Nav className='mr-auto ' navbar>
-            <UncontrolledDropdown nav inNavbar className='nav-sub-dropdown'>
-              <DropdownToggle nav caret>
-                Home
-              </DropdownToggle>
-              <DropdownMenu>
-                <DropdownItem>Option 1</DropdownItem>
-                <DropdownItem>Option 2</DropdownItem>
-                <DropdownItem divider />
-                <DropdownItem>Reset</DropdownItem>
-              </DropdownMenu>
-            </UncontrolledDropdown>
-
-            <NavItem>
-              <Input
-                className='nav-search center'
-                type='text'
-                name='search'
-                placeholder='Search'
-              />
-            </NavItem>
-          </Nav>
+          <Nav className='mr-auto ' navbar></Nav>
           <Nav>
             <NavbarText>
               <div className='header__middle'>

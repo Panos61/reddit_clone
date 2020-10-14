@@ -1,16 +1,27 @@
 import React, { useState } from 'react';
 import { Input } from 'reactstrap';
+import { useDispatch } from 'react-redux';
+import { submitComment } from '../../store/modules/comments/actions';
 
-const Submit = () => {
+const Submit = ({ postID }) => {
   const [input, setInput] = useState({
     comment: '',
   });
+
+  const dispatch = useDispatch();
 
   const { comment } = input;
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(input);
+
+    dispatch(
+      submitComment({
+        post_id: Number(postID),
+        comment,
+      })
+    );
   };
 
   const onChange = (e) => {

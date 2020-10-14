@@ -1,6 +1,5 @@
 .post-card-top {
   display: flex;
-  flex: 1;
   margin-left: 10%;
   margin-top: 1.2%;
 }
@@ -67,6 +66,14 @@
   flex: 1;
   justify-items: flex-start;
   margin-bottom: 4px;
+}
+
+.post-card-settings {
+  color: #878a8c;
+  cursor: pointer;
+  margin-left: 10px;
+  font-size: 17px;
+  overflow: hidden;
 }
 
 .card-bottom-container-opt {
