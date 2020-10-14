@@ -8,10 +8,12 @@ const Profile = () => {
   return (
     <>
       <Header />
-      <Container style={{ marginTop: '10vh' }}>
+      <Container style={{ marginTop: '10vh', marginBottom: '4vh' }}>
         <Row>
           <Col lg='8'>
-            <h2>Profile</h2>
+            <h4 style={{ textDecoration: 'underline', color: '#33a8ff' }}>
+              Posts
+            </h4>
             <AuthPosts />
           </Col>
           <Col lg='4'>

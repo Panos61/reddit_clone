@@ -125,4 +125,21 @@ controller.get('/subreddit-posts/r/:id', async (req, res) => {
   }
 });
 
+controller.get('/my-posts/:id', async (req, res) => {
+  try {
+    const results = await pool.query(
+      'SELECT * FROM posts INNER JOIN subreddits ON subreddits.subreddit_id = posts.subreddit_id INNER JOIN users ON posts.author_id = users.user_id WHERE users.user_id = $1',
+      [req.params.id]
+    );
+
+    res.status(200).json({
+      status: 'success',
+      posts: results.rows,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json('Server Error');
+  }
+});
+
 module.exports = controller;

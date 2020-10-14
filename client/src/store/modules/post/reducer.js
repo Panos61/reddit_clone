@@ -18,7 +18,6 @@ import {
 
 export const initState = {
   posts: [],
-  authPosts: [],
   post: {},
   isLoading: false,
 };
@@ -86,7 +85,7 @@ export const postReducer = (state = initState, action) => {
     case FETCH_AUTH_POSTS:
       return {
         ...state,
-        posts: payload,
+        posts: payload.posts,
         isLoading: false,
       };
 

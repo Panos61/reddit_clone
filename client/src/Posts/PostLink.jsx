@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { getPost } from '../store/modules/post/actions';
 import {
   Card,
@@ -9,6 +9,9 @@ import {
   Col,
   CardText,
   Container,
+  Modal,
+  ModalHeader,
+  ModalBody,
 } from 'reactstrap';
 //import avatar from '../img/avatar.png';
 import { useDispatch, useSelector } from 'react-redux';
@@ -32,6 +35,12 @@ const PostLink = (props) => {
   useEffect(() => {
     post_link(postID);
   }, []);
+
+  const [modal, setModal] = useState(false);
+  const toggle = () => {
+    setModal(!modal);
+    console.log('modal');
+  };
 
   return (
     <>
@@ -99,6 +108,13 @@ const PostLink = (props) => {
                       <div className='card-bottom-container-opt'>
                         <i className='fa fa-bookmark' aria-hidden='true' /> Save
                       </div>
+                      <div className='post-card-settings'>
+                        <i
+                          className='fa fa-ellipsis-v'
+                          aria-hidden='true'
+                          onClick={toggle}
+                        ></i>
+                      </div>
                     </div>
                   </CardText>
                   <p style={{ fontSize: 'small' }}>
@@ -121,6 +137,19 @@ const PostLink = (props) => {
           </Col>
         </Row>
       </Container>
+
+      <Modal isOpen={modal} toggle={toggle}>
+        <ModalHeader toggle={toggle}>Modal title</ModalHeader>
+        <ModalBody>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+          culpa qui officia deserunt mollit anim id est laborum.
+        </ModalBody>
+      </Modal>
     </>
   );
 };

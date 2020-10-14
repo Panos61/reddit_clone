@@ -2,7 +2,7 @@
 import React from 'react';
 import './Profile.css';
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import {
   Card,
   CardBody,
@@ -22,7 +22,7 @@ const headerStyle = {
 
 const AboutUser = () => {
   const currentState = useSelector((state) => state);
-  const { currentUser, isAuthenticated } = currentState.Auth;
+  const { currentUser } = currentState.Auth;
   return (
     <>
       <Card>
@@ -51,7 +51,7 @@ const AboutUser = () => {
           <div className='about-user-container' style={{ marginTop: '2vh' }}>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
               <span style={{ fontWeight: '500', fontSize: '14px' }}>Karma</span>
-              <span>1043</span>
+              <span>[..]</span>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
               <span style={{ fontWeight: '500', fontSize: '14px' }}>
