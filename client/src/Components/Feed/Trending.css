@@ -1,7 +1,7 @@
 .trending-card-container {
-  display: grid;
+  /* display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-gap: 2rem;
+  grid-gap: 2rem; */
   align-items: center;
   justify-content: center;
   margin-top: 0.1rem;

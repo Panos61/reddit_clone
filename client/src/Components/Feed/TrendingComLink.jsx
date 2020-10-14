@@ -15,7 +15,7 @@ const TrendingComLink = ({ subreddit }) => {
           </span>
         </div>
 
-        <div className='trending-card-btn'>JOIN</div>
+        {/* <div className='trending-card-btn'>JOIN</div> */}
       </div>
     </>
   );
