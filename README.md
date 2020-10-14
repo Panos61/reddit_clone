@@ -1,5 +1,7 @@
  Disclaimer: A lot of details are missing or might be incomplete.
               Git-clone this repository and keep adding stuff in it!
+              
+ Things to do: Delete user, delete/edit posts, comment, upvote, count karma
 
 # reddit_clone
 Reddit clone using the PERN stack.
