@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const TrendingComLink = ({ subreddit }) => {
   return (
@@ -6,7 +7,13 @@ const TrendingComLink = ({ subreddit }) => {
       <div className='trending-card-container'>
         <div className='trending-card-subs'>
           <span>
-            r/{subreddit.subreddit_name}{' '}
+            <Link
+              to={'/subreddits/r/' + subreddit.subreddit_id}
+              key={subreddit.subreddit_id}
+              style={{ textDecoration: 'none' }}
+            >
+              r/{subreddit.subreddit_name} {` `}
+            </Link>
             <p style={{ fontWeight: '300' }}>[..] members</p>
           </span>
         </div>

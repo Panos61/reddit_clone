@@ -17,13 +17,15 @@ const TrendingCom = () => {
     getaListOfSubs();
   }, []);
 
-  const subreddits = subredditSelector.subreddits.map((subreddit) => {
-    return (
-      <div key={subreddit.subreddit_id}>
-        <TrendingComLink subreddit={subreddit} key={subreddit.subreddit_id} />{' '}
-      </div>
-    );
-  });
+  const subreddits = subredditSelector.subreddits
+    .slice(0, 5)
+    .map((subreddit) => {
+      return (
+        <div key={subreddit.subreddit_id}>
+          <TrendingComLink subreddit={subreddit} key={subreddit.subreddit_id} />{' '}
+        </div>
+      );
+    });
 
   return (
     <>
