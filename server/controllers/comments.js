@@ -2,26 +2,20 @@ const pool = require('../db');
 const controller = require('express').Router();
 const authorization = require('../middleware/auth');
 const jwt = require('jsonwebtoken');
-const { param } = require('./posts');
 const commentValidation = require('../middleware/commentValidation');
 require('dotenv').config();
 
-// CREATE COMMENT
+// CREATE COMMENTS
 controller.post(
-  'post/:id',
+  '/comments/submit',
   authorization,
   commentValidation,
   async (req, res) => {
     try {
-      // Destructure body
-      const { comment } = req.body;
-
-      // Check for existing token
-      // If token, then assign user as the comment author
+      // Check for any token, if there is no token, then return 403 unauthorized
       const jwtToken = req.header('token');
-      // If no token, return 403.
       if (!jwtToken) {
-        return res.status(403).json('Not Authorized.');
+        return res.status(403).json('Not Authorized');
       }
 
       // Verify token
@@ -31,17 +25,22 @@ controller.post(
       req.user = payload.user;
 
       const results = await pool.query(
-        'INSERT INTO post_comments (comment, created_at, user_id, post_id) VALUES ($1, $2, $3, $4)',
-        [comment, new Date().toISOString(), payload.user, req.params.id]
+        'INSERT INTO comments (comment, submitted_at, post_id, user_id) VALUES ($1, $2, $3, $4) RETURNING *',
+        [
+          req.body.comment,
+          new Date().toISOString(),
+          req.body.post_id,
+          payload.user,
+        ]
       );
 
       res.status(201).json({
         status: 'success',
-        comment: results.rows[0],
+        comments: results.rows[0],
       });
     } catch (error) {
       console.log(error);
-      res.status(500).json('Server Error!');
+      res.status(500).json('Server Error');
     }
   }
 );
@@ -50,9 +49,14 @@ controller.post(
 controller.get('/comments/:id', async (req, res) => {
   try {
     const results = await pool.query(
-      'SELECT * FROM post_comments WHERE post_id = $1',
+      'SELECT comment, submitted_at, user_name, comment_id, post_id FROM comments INNER JOIN users ON comments.user_id = users.user_id WHERE comments.post_id = $1',
       [req.params.id]
     );
+
+    res.status(200).json({
+      status: 'success',
+      comments: results.rows,
+    });
   } catch (error) {
     console.log(error);
     res.status(500).json('Server Error!');

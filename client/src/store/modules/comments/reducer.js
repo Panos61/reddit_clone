@@ -7,7 +7,7 @@ import {
 } from './types';
 
 export const initState = {
-  commentItems: [],
+  comments: [],
   isLoading: false,
 };
 
@@ -24,17 +24,8 @@ const commentsState = (state = initState, action) => {
     case SUBMIT_COMMENT_SUCCESS:
       return {
         ...state,
-        isLoading: false,
-        commentItems: state.commentItems.map((commentItem) =>
-          Number(commentItem.postID) === payload.postID
-            ? {
-                ...commentItem,
-                comments: [payload.comment, ...commentItem.comments],
-              }
-            : commentItem
-        ),
+        comments: [payload, ...state.comments],
       };
-
     case SUBMIT_COMMENT_ERROR:
       return {
         ...state,
@@ -44,10 +35,7 @@ const commentsState = (state = initState, action) => {
     case FETCH_ALL_COMMENTS_SUCCESS:
       return {
         ...state,
-        commentItems: [
-          ...state.commentItems,
-          { postID: payload.postID, comments: payload.comments },
-        ],
+        comments: payload.comments,
         isLoading: false,
       };
 
