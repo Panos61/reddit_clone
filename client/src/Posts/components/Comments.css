@@ -1,0 +1,42 @@
+.comment-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5%;
+  margin-left: 5%;
+}
+
+.comment-top {
+  display: flex;
+  flex-direction: row;
+}
+
+.comment-body {
+  margin-left: 6%;
+}
+
+.comment-options {
+  display: flex;
+  flex-direction: row;
+
+  flex: 1;
+  margin-top: 11px;
+  margin-left: 35px;
+  color: #878a8c;
+  cursor: pointer;
+}
+
+.comment-options span i {
+  font-size: 15px;
+}
+
+.comment-options span:hover {
+  color: #9b9c9c;
+}
+
+#comment-upvote:hover {
+  color: orangered;
+}
+
+#comment-downvote:hover {
+  color: rgb(48, 5, 150);
+}

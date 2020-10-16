@@ -31,14 +31,14 @@ const Subreddit = (props) => {
 
       <Container>
         <Row>
-          <Col sm='8'>
+          <Col lg='8'>
             <SubmitPost />
             <SortBar />
             <SubPosts />
           </Col>
 
           {/* SUBREDDIT SIDE COMPONENTS */}
-          <Col sm='4' style={{ marginTop: '5%' }}>
+          <Col lg='4' style={{ marginTop: '5%' }}>
             <AboutSub />
             <HelpBox />
           </Col>

@@ -1,8 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { fetchComments } from '../store/modules/comments/actions';
 import Comments from './components/Comments';
+import NoComments from './components/NoComments';
 
 const CommentSection = (props) => {
   const postID = props.match.params.id;
@@ -29,7 +31,7 @@ const CommentSection = (props) => {
         <> {comments}</>
       ) : (
         <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <span>No more communities to display. :(</span>
+          <NoComments />
         </div>
       )}
     </>

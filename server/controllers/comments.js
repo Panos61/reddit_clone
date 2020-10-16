@@ -49,7 +49,7 @@ controller.post(
 controller.get('/comments/:id', async (req, res) => {
   try {
     const results = await pool.query(
-      'SELECT comment, submitted_at, user_name, comment_id, post_id FROM comments INNER JOIN users ON comments.user_id = users.user_id WHERE comments.post_id = $1',
+      'SELECT comment, submitted_at, user_name, comment_id, post_id, users.user_id FROM comments INNER JOIN users ON comments.user_id = users.user_id WHERE comments.post_id = $1',
       [req.params.id]
     );
 

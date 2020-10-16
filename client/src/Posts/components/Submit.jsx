@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import { Input } from 'reactstrap';
 import { useDispatch } from 'react-redux';
 import { submitComment } from '../../store/modules/comments/actions';
+import { withRouter } from 'react-router-dom';
 
-const Submit = ({ postID }) => {
+const Submit = (props) => {
+  const postID = props.match.params.id;
   const [input, setInput] = useState({
     comment: '',
+    post_id: postID,
   });
 
   const dispatch = useDispatch();
@@ -16,12 +19,7 @@ const Submit = ({ postID }) => {
     e.preventDefault();
     console.log(input);
 
-    dispatch(
-      submitComment({
-        post_id: Number(postID),
-        comment,
-      })
-    );
+    dispatch(submitComment(input));
   };
 
   const onChange = (e) => {
@@ -46,4 +44,4 @@ const Submit = ({ postID }) => {
   );
 };
 
-export default Submit;
+export default withRouter(Submit);

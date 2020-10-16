@@ -19,7 +19,7 @@ const SubNav = (props) => {
   }, []);
 
   return (
-    <div className='topnav'>
+    <div className='topnav' style={{ marginTop: '50px' }}>
       <div className='mid'>
         <span>r/{post.subreddit_name}</span>
       </div>

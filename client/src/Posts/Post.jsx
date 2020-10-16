@@ -28,13 +28,18 @@ const Post = ({ post }) => {
         <CardTitle>
           <div className='post-card-top'>
             <div className='post-card-sub'>
-              <Media left href='#'>
-                <img
-                  src={avatar}
-                  alt='avatar'
-                  style={{ borderRadius: '40px', height: '23px' }}
-                />
-              </Media>
+              <Link
+                to={'/subreddits/r/' + post.subreddit_id}
+                key={post.subreddit_id}
+              >
+                <Media left href='#'>
+                  <img
+                    src={avatar}
+                    alt='avatar'
+                    style={{ borderRadius: '40px', height: '23px' }}
+                  />
+                </Media>
+              </Link>
               <Link
                 to={'/subreddits/r/' + post.subreddit_id}
                 key={post.subreddit_id}

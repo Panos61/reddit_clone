@@ -20,8 +20,8 @@ import AboutCom from '../Components/Post-Components/AboutCom';
 import SubNav from '../Components/Post-Components/SubNav';
 import { Link } from 'react-router-dom';
 import Moment from 'react-moment';
-import NoComments from './components/NoComments';
 import Submit from './components/Submit';
+import CommentSection from './CommentSection';
 
 const PostLink = (props) => {
   const postID = props.match.params.id;
@@ -50,21 +50,10 @@ const PostLink = (props) => {
 
       <Container>
         <Row>
-          <Col sm='8'>
-            <Card style={{ marginTop: '3%' }}>
+          <Col lg='8'>
+            <Card style={{ marginTop: '3%', marginBottom: '5%' }}>
               <CardTitle>
                 <div className='post-card-top'>
-                  {/* <div className='post-card-sub'>
-                    <Media left href='#'>
-                      <img
-                        src={avatar}
-                        alt='avatar'
-                        style={{ borderRadius: '40px', height: '23px' }}
-                      />
-                    </Media>
-                  
-                  </div> */}
-
                   <div className='post-card-name-date'>
                     Posted by u/{post.user_name}{' '}
                     <Moment fromNow ago>
@@ -127,12 +116,14 @@ const PostLink = (props) => {
                 </Col>
               </Row>
               {/* COMMENT SECTION */}
-              <NoComments />
+              <Container>
+                <CommentSection />
+              </Container>
             </Card>
           </Col>
 
           {/* SUBREDDIT SIDE COMPONENTS */}
-          <Col sm='4' style={{ marginTop: '5%' }}>
+          <Col lg='4' style={{ marginTop: '5%' }}>
             <AboutCom />
           </Col>
         </Row>
