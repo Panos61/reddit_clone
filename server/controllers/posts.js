@@ -47,7 +47,7 @@ controller.post('/submit', authorization, postValidation, async (req, res) => {
 controller.get('/feed', async (req, res) => {
   try {
     const results = await pool.query(
-      'SELECT * FROM posts INNER JOIN users ON posts.author_id = users.user_id INNER JOIN subreddits ON posts.subreddit_id = subreddits.subreddit_id ORDER BY posts.created_at DESC'
+      'SELECT post_title, post_content, author_id, posts.subreddit_id, post_id, posts.created_at, user_name, user_id, subreddit_name, subreddit_desc FROM posts INNER JOIN users ON posts.author_id = users.user_id INNER JOIN subreddits ON posts.subreddit_id = subreddits.subreddit_id ORDER BY posts.created_at DESC'
     );
 
     res.status(200).json({
@@ -94,7 +94,7 @@ controller.get('/my-feed', authorization, async (req, res) => {
 controller.get('/post/:id', async (req, res) => {
   try {
     const results = await pool.query(
-      'SELECT * FROM posts INNER JOIN users ON posts.author_id = users.user_id INNER JOIN subreddits ON posts.subreddit_id = subreddits.subreddit_id WHERE post_id = $1 ',
+      'SELECT post_title, post_content, author_id, posts.subreddit_id, post_id, posts.created_at, user_name, user_id, subreddit_name, subreddit_desc  FROM posts INNER JOIN users ON posts.author_id = users.user_id INNER JOIN subreddits ON posts.subreddit_id = subreddits.subreddit_id WHERE post_id = $1 ',
       [req.params.id]
     );
 

@@ -14,9 +14,6 @@ import {
   //   UPDATE_POST_ERROR,
   //   DELETE_POST_SUCCESS,
   //   DELETE_POST_ERROR,
-
-  //   FETCH_AUTH_POSTS,
-  //   FETCH_AUTH_POSTS_ERROR,
 } from './types';
 import { clearErrors, returnErrors } from '../errors/actions';
 import history from '../../../history';
@@ -46,8 +43,8 @@ export const submitPost = ({ title, content, subreddit }) => {
       }
 
       dispatch({ type: SUBMIT_POST_SUCCESS, payload: parseRes });
-      dispatch(clearErrors());
       history.push('/');
+      dispatch(clearErrors());
     } catch (error) {
       dispatch({ type: SUBMIT_POST_ERROR });
       dispatch(returnErrors(error.message, error.id, 'SUBMIT_POST_ERROR'));

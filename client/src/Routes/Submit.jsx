@@ -8,7 +8,8 @@ import HelpBox from '../Components/HelpBox';
 import help from '../img/help.png';
 import { submitPost } from '../store/modules/post/actions';
 import { getSubreddits } from '../store/modules/subs/actions';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
+import history from '../history';
 
 // Select Dropdown Style
 const selectStyle = {
@@ -207,4 +208,4 @@ const Submit = () => {
   );
 };
 
-export default Submit;
+export default withRouter(Submit);
