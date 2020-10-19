@@ -37,11 +37,12 @@ const App = () => {
           <Route exact path='/register' component={Register} />
           <Route exact path='/post/:id' component={PostLink} />
           <Route exact path='/subreddits/r/:id' component={Subreddit} />
+          <Route exact path='/users/:id' component={Profile} />
 
           {/* Private Routes  */}
           <PrivateRoute exact path='/submit' component={Submit} />
           <PrivateRoute exact path='/subreddits/create' component={CreateSub} />
-          <PrivateRoute exact path='/users/:id' component={Profile} />
+
           {/* Error 404 - Not found */}
           <Route path='*' component={NotFound} />
         </Switch>

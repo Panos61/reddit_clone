@@ -63,4 +63,22 @@ controller.get('/comments/:id', async (req, res) => {
   }
 });
 
+// FETCH NUMBER OF COMMENTS IN ONE POST
+controller.get('/comments/:id', async (req, res) => {
+  try {
+    const results = await pool.query(
+      'SELECT COUNT (comment) FROM comments INNER JOIN posts ON comments.post_id = posts.post_id WHERE comments.post_id = $1',
+      [req.params.id]
+    );
+
+    res.status(200).json({
+      status: 'success',
+      comments: results.rows[0],
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json('Server Error!');
+  }
+});
+
 module.exports = controller;

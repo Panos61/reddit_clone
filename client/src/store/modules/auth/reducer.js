@@ -4,11 +4,11 @@ import {
   LOGIN_SUCCESS,
   LOGIN_ERROR,
   LOGOUT_SUCCESS,
-  // DELETE_USER_SUCCESS,
-  // DELETE_USER_ERROR,
-  SET_CURRENT_USER,
   DELETE_USER_SUCCESS,
   DELETE_USER_ERROR,
+  SET_CURRENT_USER,
+  GET_USER_SUCCESS,
+  GET_USER_ERROR,
 } from './types';
 import isEmpty from 'lodash/isEmpty';
 
@@ -64,6 +64,19 @@ const authReducer = (state = initState, action) => {
       };
 
     case DELETE_USER_ERROR:
+      return {
+        ...state,
+        isLoading: false,
+      };
+
+    case GET_USER_SUCCESS:
+      return {
+        ...state,
+        user: action.payload,
+        isLoading: false,
+      };
+
+    case GET_USER_ERROR:
       return {
         ...state,
         isLoading: false,

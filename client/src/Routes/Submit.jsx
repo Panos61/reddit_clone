@@ -9,7 +9,6 @@ import help from '../img/help.png';
 import { submitPost } from '../store/modules/post/actions';
 import { getSubreddits } from '../store/modules/subs/actions';
 import { Link, withRouter } from 'react-router-dom';
-import history from '../history';
 
 // Select Dropdown Style
 const selectStyle = {

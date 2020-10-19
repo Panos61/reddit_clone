@@ -39,7 +39,6 @@ const PostLink = (props) => {
   const [modal, setModal] = useState(false);
   const toggle = () => {
     setModal(!modal);
-    console.log('modal');
   };
 
   return (

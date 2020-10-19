@@ -2,15 +2,15 @@ import {
   LOGIN_SUCCESS,
   LOGIN_ERROR,
   LOGOUT_SUCCESS,
-  // DELETE_USER_SUCCESS,
-  // DELETE_USER_ERROR,
   SET_CURRENT_USER,
   DELETE_USER_SUCCESS,
+  DELETE_USER_ERROR,
+  GET_USER_SUCCESS,
+  GET_USER_ERROR,
 } from './types';
 import history from '../../../history';
 import { clearErrors, returnErrors } from '../errors/actions';
 import { toast } from 'react-toastify';
-import { DELETE_POST_ERROR } from '../post/types';
 
 // Login
 export const login = ({ email, password }) => {
@@ -50,45 +50,23 @@ export const login = ({ email, password }) => {
   };
 };
 
-// Register
-// For some reason, it's not working (401) here but on the register file itself..
+// Get user profile
+export const getUser = (id) => {
+  return async (dispatch) => {
+    try {
+      const response = await fetch(`http://localhost:4000/auth/users/${id}`, {
+        method: 'GET',
+      });
 
-// export const register = ({ email, username, password }) => {
-//   const body = JSON.stringify({ email, username, password });
-
-//   return async (dispatch, setAuth) => {
-//     try {
-//       const response = await fetch('http://localhost:4000/auth/register', {
-//         method: 'POST',
-//         headers: {
-//           'Content-Type': 'application/json',
-//           'Access-Control-Allow-Origin': '*',
-//           Accept: 'application/json',
-//           'Access-Control-Allow-Credentials': ' true ',
-//         },
-//         mode: 'no-cors',
-//         body: JSON.stringify(body),
-//         credentials: 'include',
-//       });
-
-//       const parseRes = response.json();
-
-//       if (parseRes.token) {
-//         localStorage.setItem('token', parseRes.token);
-//         setAuth(true);
-//       }
-
-//       dispatch({ type: REGISTER_SUCCESS, payload: parseRes });
-//       dispatch(clearErrors());
-
-//       history.push('/');
-//     } catch (error) {
-//       console.error(error);
-//       dispatch({ type: REGISTER_ERROR });
-//       dispatch(returnErrors(error.message, error.id, 'REGISTER_SUCCESS'));
-//     }
-//   };
-// };
+      const parseRes = await response.json();
+      dispatch({ type: GET_USER_SUCCESS, payload: parseRes });
+      dispatch(clearErrors());
+    } catch (error) {
+      dispatch({ type: GET_USER_ERROR });
+      dispatch(returnErrors(error.message, error.id, 'GET_USER_ERROR'));
+    }
+  };
+};
 
 // Get Current user
 export const getMe = () => {
@@ -132,13 +110,15 @@ export const deleteUser = (id) => {
         method: 'DELETE',
       });
       const parseRes = response.json();
+
       dispatch({ type: DELETE_USER_SUCCESS, payload: parseRes });
       dispatch(clearErrors());
+
       window.localStorage.clear();
       window.location.href = '/';
     } catch (error) {
-      dispatch({ type: DELETE_POST_ERROR });
-      dispatch(returnErrors());
+      dispatch({ type: DELETE_USER_ERROR });
+      dispatch(returnErrors(error.message, error.id, 'DELETE_USER_ERROR'));
     }
   };
 };

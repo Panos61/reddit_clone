@@ -116,21 +116,12 @@ router.get('/get-me', authorization, async (req, res) => {
   }
 });
 
-router.delete('/users/:id', authorization, async (req, res) => {
+router.get('/users/:id', async (req, res) => {
   try {
-    // Check for token
-    const jwtToken = req.header('token');
-    if (!jwtToken) {
-      return res.status(403).json('Not Authorized.');
-    }
-
-    const payload = jwt.verify(jwtToken, process.env.jwtSecret);
-
-    req.user = payload.user;
-
-    const user = await pool.query('DELETE * FROM users WHERE user_id = $1', [
-      req.user,
-    ]);
+    const user = await pool.query(
+      'SELECT user_id, user_name, created_at FROM users WHERE user_id = $1',
+      [req.params.id]
+    );
 
     res.status(200).json({ user: user.rows[0] });
   } catch (error) {
