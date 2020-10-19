@@ -89,7 +89,9 @@ const Header = () => {
         </NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
-          <Nav className='mr-auto ' navbar></Nav>
+          <Nav className='mr-auto ' navbar>
+            <Link to='/explore'>Explore</Link>
+          </Nav>
           <Nav>
             <NavbarText>
               <div className='header__middle'>
@@ -103,16 +105,7 @@ const Header = () => {
                     <i className='fa fa-bar-chart' aria-hidden='true' />
                   </div>
                 </Link>
-                <Link to='/' style={{ textDecoration: 'none' }}>
-                  <div className='header__option'>
-                    <i className='fa fa-commenting-o' aria-hidden='true' />
-                  </div>
-                </Link>
-                <Link to='/' style={{ textDecoration: 'none' }}>
-                  <div className='header__option'>
-                    <i className='fa fa-envelope' aria-hidden='true' />
-                  </div>
-                </Link>
+
                 <Link to='/submit' style={{ textDecoration: 'none' }}>
                   <div className='header__option'>
                     <i className='fa fa-pencil-square-o' aria-hidden='true' />

@@ -90,9 +90,9 @@ const AboutUser = (props) => {
               <span>
                 <i className='fa fa-birthday-cake' aria-hidden='true'></i>{' '}
                 {'  '}{' '}
-                {/* <Moment format='D MMM, YYYY' withTitle>
+                <Moment format='D MMM, YYYY' withTitle>
                   {currentUser ? currentUser.user.created_at : null}
-                </Moment> */}
+                </Moment>
               </span>
             </div>
           </div>

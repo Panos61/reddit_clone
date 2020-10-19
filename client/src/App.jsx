@@ -12,6 +12,7 @@ import {
   CreateSub,
   Profile,
   Subreddit,
+  Explore,
 } from './Routes/index';
 import NotFound from './error404';
 import PrivateRoute from './PrivateRoute';
@@ -38,6 +39,7 @@ const App = () => {
           <Route exact path='/post/:id' component={PostLink} />
           <Route exact path='/subreddits/r/:id' component={Subreddit} />
           <Route exact path='/users/:id' component={Profile} />
+          <Route exact path='/explore' component={Explore} />
 
           {/* Private Routes  */}
           <PrivateRoute exact path='/submit' component={Submit} />
