@@ -1,5 +1,4 @@
- Disclaimer: A lot of details are missing or might be incomplete.
-              Git-clone this repository and keep adding stuff in it!
+Unfinished project
               
  Things to do: Delete user, delete/edit posts, upvote, count karma
 
